@@ -1,0 +1,13 @@
+.react-photo-album--image:hover{
+  transform: scale(1.2);
+  transition: transform 0.4s ease-in-out;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  border: 1px solid #ccc;
+  z-index: 1000;
+  position: relative;
+  
+}
+
+.react-photo-album--image{
+  padding: 20px;
+}

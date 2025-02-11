@@ -1,0 +1,71 @@
+.nav-link{
+  --bs-nav-link-color: #000;
+  --bs-nav-link-hover-color: #868686;
+}
+
+.shrink-navbar {
+  transition: all 0.2s ease-in-out;
+  overflow-y: hidden;
+}
+
+.shrink-navbar.scrolled {
+  transform: scaleY(0.8);
+  transform-origin: top;
+}
+
+img {
+  transition: all 0.5s ease-in-out;
+}
+
+.scrolled-logo {
+  transform: scale(0.8);
+  transform-origin: left top;
+}
+
+.navItems{
+  transition: all .5s ease-in-out;
+  font-size: large;
+}
+
+.navItems.scrolled{
+  font-size: medium;
+}
+
+.navbar-toggler.collapsed{
+  background-color: #000;
+}
+
+.navbar-toggler.navbar-toggler{
+  background-color: #000;
+}
+
+.navbar-info{
+  background-color: rgb(25, 168, 168);
+  text-align: right;
+  position: absolute;
+  margin-bottom: 10px;
+  top: 0;
+  right: 0;
+  width: 100%;
+  z-index: 1000;
+
+}
+
+.navbar-info span{
+  margin-left: 50px;
+  color: white;
+}
+
+@media (max-width: 900px) {
+  .navbar-info{
+    display: none;
+  }
+}
+
+.navbar-brand{
+  margin-top: 30px;
+}
+
+.navItems{
+  margin-top: 40px;
+}
