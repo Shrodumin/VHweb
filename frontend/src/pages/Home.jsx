@@ -10,6 +10,7 @@ import { Image } from "react-bootstrap";
 function Home(){
     const [realisations, setRealisations] = useState([]);
     const [isScrolled, setIsScrolled] = useState(false);
+    const [images, setImages] = useState([]);
 
     useEffect(() => {
         getRealisations();
@@ -25,11 +26,12 @@ function Home(){
             .catch((err) => alert(err));
     }
 
+
     return (
         <>
             <NavbarComponent />
             <div className="intro-container">
-                <img src="http://localhost/images/intro/intro.jpg" alt="Logo" className="img-fluid" />
+                <img src='/intro/intro.jpg' alt="Logo" className="img-fluid" />
                 <div className="d-flex justify-content-center align-items-center ">
                     <h1 className="text-white intro-title">STAVEBNÍ PRÁCE</h1>
                 </div>
@@ -55,7 +57,7 @@ function Home(){
                             
                     </div>
                     <div className="col-md-6">
-                        <Image src="http://localhost/images/intro/intro2.jpg" alt="Image" fluid rounded/>
+                        <Image src="/intro/intro2.jpg" alt="Image" fluid rounded/>
                     </div>
                 </div>
             </div>

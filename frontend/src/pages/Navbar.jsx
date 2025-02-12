@@ -49,10 +49,10 @@ function NavbarComponent(){
   }, []);
 
   const services = [
-    {key: 1, title: "Výstavba", image: "http://localhost/images/services/vystavba.png", routeName : "/vystavba"},
-    {key: 2, title: "Rekonstrukce", image: "http://localhost/images/services/rekonstrukce.png", routeName : "/rekonstrukce"},
-    {key: 3, title: "Mechanizace", image: "http://localhost/images/services/mechanizace.png", routeName : "/mechanizace"},
-    {key: 4, title: "Lešení", image: "http://localhost/images/services/leseni.png", routeName : "/leseni"},
+    {key: 1, title: "Výstavba", image: "/services/vystavba.png", routeName : "/vystavba"},
+    {key: 2, title: "Rekonstrukce", image: "/services/rekonstrukce.png", routeName : "/rekonstrukce"},
+    {key: 3, title: "Mechanizace", image: "/services/mechanizace.png", routeName : "/mechanizace"},
+    {key: 4, title: "Lešení", image: "/images/services/leseni.png", routeName : "/leseni"},
   ]
 
   return (
@@ -64,7 +64,7 @@ function NavbarComponent(){
         <span style={{marginRight: "100px"}} >Email: <a href="mailto:kancelar@mont-stav.cz" style={{color: "#333"}}>kancelar@mont-stav.cz</a></span>
       </div>
         <Navbar.Brand>
-          <img src="http://localhost/images/logo/logo.png" alt="Logo" className={scrolled ? 'scrolled-logo' : ''}/>
+          <img src="/logo/logo.png" alt="Logo" className={scrolled ? 'scrolled-logo' : ''}/>
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" className='navbar-toggler'/>
         <Navbar.Collapse id="basic-navbar-nav" className="justify-content-end">
