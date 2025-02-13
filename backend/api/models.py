@@ -1,11 +1,12 @@
 from django.db import models
+from cloudinary.models import CloudinaryField
 
 # Create your models here.
 
 class Post(models.Model):
     title = models.CharField(max_length=100)
     content = models.TextField()
-    image = models.ImageField(upload_to='images/posts', null=True, blank=True)
+    image = CloudinaryField('image')
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
@@ -13,7 +14,7 @@ class Post(models.Model):
 
 class Realisation(models.Model):
     title = models.CharField(max_length=100)
-    image = models.ImageField(upload_to='images/realisations', null=True, blank=True)
+    image = CloudinaryField('image')
     posts = models.ManyToManyField(Post)
 
     def __str__(self):

@@ -63,7 +63,7 @@ function Post() {
   };
 
   const photos = posts.map((post) => ({
-    src: post.image,
+    src: "https://res.cloudinary.com/dotqkdyma/"+post.image,
     width: 800,
     height: 400,
   }));
@@ -85,7 +85,7 @@ function Post() {
         open={lightboxOpen}
         close={handleLightboxClose}
         slides={posts.map((post) => ({
-          src: fixImageUrl(post.image),
+          src: "https://res.cloudinary.com/dotqkdyma/"+post.image,
           alt: post.title,
         }))}
         index={selectedImage && selectedImage.index !== undefined ? selectedImage.index : 0}

@@ -65,6 +65,7 @@ class ShowRealisation(generics.ListAPIView):
 
     def get_queryset(self):
         user = self.request.user
+        
         return Realisation.objects.all()  # or filter by user if needed
 
 class CreatePosts(generics.ListCreateAPIView):

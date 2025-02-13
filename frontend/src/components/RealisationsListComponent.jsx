@@ -78,7 +78,7 @@ function RealisationsListComponent() {
                         }}
                         >
                         <Image
-                            src={fixImageUrl(realisation.image)}
+                            src={"https://res.cloudinary.com/dotqkdyma/"+realisation.image}
                             alt={realisation.title}
                             className="realisation-image"
                             fluid
