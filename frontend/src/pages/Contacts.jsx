@@ -7,7 +7,7 @@ function Contacts(){
         <>
             <NavbarComponent/>
             <ContainerCard
-                image="http://localhost/images/intro/intro.jpg"
+                image="/intro/intro.jpg"
                 className="d-flex justify-content-between"
             >
                 <div className="d-flex justify-content-between" style={{width: "100%", height: "100%", padding: "100px"}}>

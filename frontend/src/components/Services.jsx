@@ -5,11 +5,11 @@ import NavbarComponent from "../pages/Navbar";
 
 function Services({title, image}){
     const services = [
-        {key: 1, title: "Výstavba", image: "http://localhost/images/services/vystavba.png", routeName : "/vystavba"},
-        {key: 2, title: "Lešení", image: "http://localhost/images/services/leseni.png", routeName : "/leseni"},
-        {key: 3, title: "Mechanizace", image: "http://localhost/images/services/mechanizace.png", routeName : "/mechanizace"},
-        {key: 4, title: "Rekonstrukce rodinných domů", image: "http://localhost/images/services/rekonstrukce.png", routeName : "/rekonstrukce"},
-        {key: 5, title: "Dokumentace", image: "http://localhost/images/services/vystavba.png", routeName : "/dokumentace"},
+        {key: 1, title: "Výstavba", image: "/services/vystavba.png", routeName : "/vystavba"},
+        {key: 2, title: "Lešení", image: "/services/leseni.png", routeName : "/leseni"},
+        {key: 3, title: "Mechanizace", image: "/services/mechanizace.png", routeName : "/mechanizace"},
+        {key: 4, title: "Rekonstrukce rodinných domů", image: "/services/rekonstrukce.png", routeName : "/rekonstrukce"},
+        {key: 5, title: "Dokumentace", image: "/services/vystavba.png", routeName : "/dokumentace"},
     ]
 
     return (

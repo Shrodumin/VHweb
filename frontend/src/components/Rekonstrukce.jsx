@@ -9,7 +9,7 @@ const Rekonstrukce = () => {
       <div>
         <NavbarComponent />
         <ContainerCard
-          image="http://localhost/images/intro/intro.jpg"
+          image="/intro/intro.jpg"
           style={{
             // additional styles for the container
           }}
