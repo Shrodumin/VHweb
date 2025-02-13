@@ -16,20 +16,16 @@ function Home() {
 
   const getRealisations = async () => {
     try {
-      const res = await api.get("/api/realisations/");
-      setRealisations(res.data);
-
-      // Po načtení všech obrázků počkáme na jejich skutečné vykreslení
-      const imagePromises = res.data.map((realisation) => {
+      const staticImagePromises = ["/intro/intro.jpg", "/intro/intro2.jpg"].map((src) => {
         return new Promise((resolve) => {
           const img = new Image();
-          img.src = realisation.image_url; // image_url z API
+          img.src = src;
           img.onload = resolve;
-          img.onerror = resolve; // Pokud obrázek selže, taky pokračuj
+          img.onerror = resolve;
         });
       });
 
-      await Promise.all(imagePromises); // Počkej, až se všechny obrázky načtou
+      await Promise.all(staticImagePromises ); // Počkej, až se všechny obrázky načtou
       setIsLoading(false);
     } catch (err) {
       console.error(err);
