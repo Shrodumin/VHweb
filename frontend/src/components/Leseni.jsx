@@ -21,7 +21,6 @@ const Leseni = () => {
         {isImageLoading ? (
         <div className="loading-container" style={{ display: "flex", justifyContent: "center", alignItems: "center", height: "100vh" }}>
           <Spinner animation="border" role="status" style={{ width: "5rem", height: "5rem" }}>
-            <span className="sr-only">Loading...</span>
           </Spinner>
         </div>
       ) : (
