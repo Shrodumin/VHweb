@@ -2,9 +2,13 @@ import { useEffect, useState } from "react";
 import NavbarComponent from "./Navbar";
 import "../styles/Home.css";
 import { Image, Spinner } from "react-bootstrap";
+import api from "../api";
+import React from "react";
+import { Link } from "react-router-dom";
 
 function Home() {
   const [isLoading, setIsLoading] = useState(true); // Stav načítání
+  const [realisations, setRealisations] = useState([]);
 
   useEffect(() => {
     const staticImages = ["/intro/intro.jpg", "/intro/intro2.jpg"]; // Cesty ke všem obrázkům
@@ -16,11 +20,23 @@ function Home() {
         img.onload = resolve; // Zavolá resolve, když se obrázek načte
         img.onerror = resolve; // Zavolá resolve i při chybě (aby to nezablokovalo aplikaci)
       });
+      
     });
 
     // Počkej, až se všechny obrázky načtou, a pak skryj spinner
     Promise.all(loadImages).then(() => setIsLoading(false));
+    getRealisations();
+    
   }, []);
+
+  const getRealisations = () => {
+    api
+        .get("/api/realisations/")
+        .then((res) => res.data) 
+        .then((data) => setRealisations(data))
+        .catch((err) => alert(err));
+}
+
 
   return (
     <>
@@ -47,7 +63,12 @@ function Home() {
                   Firma byla založena v roce 1991 panem Vladimírem Hvězdou. Od roku 2008 provozujeme stavební činnost pod názvem VH MONT-STAV s.r.o. Patříme mezi menší stavební firmy se sídlem v Náměšti nad Oslavou a působností zejména v kraji Vysočina.
                 </p>
                 <p className="text-justify">
-                  <b>Specializujeme se na:</b> rekonstrukce, výstavbu a modernizaci budov.
+                  <b>Specializujeme se na:</b> {realisations.map((realisation, index) => (
+                    <React.Fragment key={index}>
+                      <Link to={`/realisations/${realisation.id}/posts`}>{realisation.title}</Link>
+                      {index < realisations.length - 2 ? ", " : index === realisations.length - 2 ? " a " : "."}
+                    </React.Fragment>
+                  ))}
                 </p>
               </div>
               <div className="col-md-6">
