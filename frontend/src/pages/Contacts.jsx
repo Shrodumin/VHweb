@@ -34,7 +34,7 @@ function Contacts() {
               <h4>Mobil</h4>
               <ul>
                 <li>
-                  <a href="tel:+420602545077">+420 602 545 077</a>
+                  <a href="tel:+420602545077">+420 602 545 077</a><br></br>
                   <a href="tel:+420603859971">+420 603 859 971</a>
                 </li>
               </ul>
@@ -47,7 +47,7 @@ function Contacts() {
               <h4>E-mail</h4>
               <ul>
                 <li>
-                  <a href="mailto:kopulety@mont-stav.cz">kopulety@mont-stav.cz</a>
+                  <a href="mailto:kopulety@mont-stav.cz">kopulety@mont-stav.cz</a><br></br>
                   <a href="mailto:kancelar@mont-stav.cz">kancelar@mont-stav.cz</a>
                 </li>
               </ul>
