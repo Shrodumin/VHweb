@@ -17,6 +17,7 @@ function RealisationsListComponent() {
     }, []);
 
 
+
     const getRealisations = () => {
         api
             .get("/api/realisations/")
@@ -24,6 +25,14 @@ function RealisationsListComponent() {
             .then((data) => setRealisations(data))
             .catch((err) => alert(err));
     }
+
+    const fixImageUrl = (url) => {
+        if (url) {
+          const backendRegex = /^http:\/\/backend-[\d\w-]+(\.[\w-]+)*(:\d+)?/; 
+          return url.replace(backendRegex, "https://6cd635e1-92c5-468c-a855-aef35962b522-dev.e1-eu-north-azure.choreoapis.dev/website/backend/v1.0");
+        }
+        return url;
+      };
 
     return (
         <>
@@ -69,7 +78,7 @@ function RealisationsListComponent() {
                         }}
                         >
                         <Image
-                            src={realisation.image}
+                            src={fixImageUrl(realisation.image)}
                             alt={realisation.title}
                             className="realisation-image"
                             fluid

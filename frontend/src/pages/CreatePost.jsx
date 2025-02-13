@@ -4,7 +4,7 @@ import FormRealisation from "../components/FormPost";
 function RealisationAdd(){
   const { id } = useParams();
 
-  return <FormRealisation route={`/realisations/${id}/posts/add`} />;
+  return <FormRealisation route={`api/realisations/${id}/posts/add`} />;
 }
 
 export default RealisationAdd;
