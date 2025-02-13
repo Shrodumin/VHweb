@@ -59,6 +59,14 @@ class DeleteRealisation(generics.DestroyAPIView):
     def perform_destroy(self, instance):
         instance.delete()
 
+class ShowRealisation(generics.ListAPIView):
+    serializer_class = RealisationSerializer
+    permission_classes = [AllowAny] # IsAdminUser later 
+
+    def get_queryset(self):
+        user = self.request.user
+        return Realisation.objects.all()  # or filter by user if needed
+
 class CreatePosts(generics.ListCreateAPIView):
     serializer_class = PostSerializer
     permission_classes = [AllowAny]
