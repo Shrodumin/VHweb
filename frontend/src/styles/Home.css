@@ -38,3 +38,14 @@
     text-transform: uppercase;
     text-shadow: 0px 0 black, 0 0px black, 5px 0 black, 0 3px black;
 }
+
+@media screen and (max-width: 768px) {
+    .intro-title {
+        font-size: 6vh;
+    }
+    
+}
+
+p {
+    text-align: justify;
+}

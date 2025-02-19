@@ -16,6 +16,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import PricePool from "./pages/PricePool"
 import Contacts from "./pages/Contacts"
 import ProtectedRoute from "./components/ProtectedRoute"
+import FormToPDF from "./components/PDFForm"
 
 function App() {
   return (
@@ -33,6 +34,7 @@ function App() {
           <Route path="/contacts" element={<Contacts/>}/>
           <Route path="/404" element={<NotFound />} />
           <Route path="/login" element={<Login />}/>
+          <Route path="form" element={<FormToPDF />} />
 
         </Routes>
       </BrowserRouter>

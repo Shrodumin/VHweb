@@ -24,11 +24,11 @@ function RealisationsListComponent() {
           const img = new window.Image();
           img.src = `https://res.cloudinary.com/dotqkdyma/${realisation.image}`;
           img.onload = resolve;
-          img.onerror = resolve; // Pokračujeme i při chybě
+          img.onerror = resolve;
         });
       });
 
-      await Promise.all(imagePromises); // Počkáme, až se všechny obrázky načtou
+      await Promise.all(imagePromises);
       setIsLoading(false);
     } catch (err) {
       console.error(err);
@@ -39,18 +39,21 @@ function RealisationsListComponent() {
   return (
     <>
       {isLoading ? (
-        <div className="loading-container" style={{ display: "flex", justifyContent: "center", alignItems: "center", height: "100vh" }}>
-          <Spinner animation="border" role="status" style={{ width: "5rem", height: "5rem" }}>
-          </Spinner>
+        <div
+          className="loading-container d-flex justify-content-center align-items-center"
+          style={{ height: "100vh" }}
+        >
+          <Spinner animation="border" role="status" style={{ width: "5rem", height: "5rem" }} />
         </div>
       ) : (
         <Container>
           <Row className="justify-content-center">
             {realisations.map((realisation) => (
-              <Col key={realisation.id} xs={12} md={6} lg={4}>
+              <Col key={realisation.id} xs={12} sm={10} md={6} lg={4} className="d-flex justify-content-center">
                 <Card
                   style={{
                     width: "100%",
+                    maxWidth: "350px", // Oprava přesahování
                     margin: "20px",
                     borderRadius: "10px",
                     boxShadow: "0 0 10px rgba(0, 0, 0, 0.1)",

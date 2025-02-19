@@ -44,7 +44,6 @@ function Home() {
       {isLoading ? (
         <div className="loading-container" style={{ display: "flex", justifyContent: "center", alignItems: "center", height: "100vh" }}>
           <Spinner animation="border" role="status" style={{ width: "5rem", height: "5rem" }}>
-            <span className="sr-only">Loading...</span>
           </Spinner>
         </div>
       ) : (
@@ -71,7 +70,7 @@ function Home() {
                   ))}
                 </p>
               </div>
-              <div className="col-md-6">
+              <div className="col-12 col-md-6 d-flex justify-content-center mt-4 mt-md-0">
                 <Image src="/intro/intro2.jpg" alt="Image" fluid rounded />
               </div>
             </div>

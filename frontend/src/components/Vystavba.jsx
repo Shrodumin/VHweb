@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import NavbarComponent from "../pages/Navbar";
 import { Spinner } from "react-bootstrap";
 import ContainerCard from "./ContainerCard";
-import "../styles/ServiceTab.css";
+import styles from "../styles/ServiceTab.module.css";
 
 const Vystavba = () => {
   const [isImageLoading, setIsImageLoading] = useState(true); // Stav načítání
@@ -30,12 +30,9 @@ const Vystavba = () => {
           // additional styles for the container
         }}
       >
-        <h1 style={{marginTop: "50px"}}>Výstavba</h1>
-        <p style={{ padding: "50px", marginLeft: "50px", marginRight: "50px" }}>
-          lorem ipus lorem ipus lorem ipus lorem ipus lorem ipus lorem ipus lorem ipus lorem ipus lorem ipus lorem ipus lorem ipus lorem ipus lorem ipus lorem ipus lorem ipus lorem
-          ipus lorem ipus lorem ipus lorem ipus lorem ipus lorem ipus lorem ipus lorem ipus lorem ipus lorem ipus lorem ipus lorem ipus lorem ipus lorem ipus lorem ipus lorem ipus
-          lorem ipus lorem ipus lorem ipus lorem ipus lorem ipus lorem ipus lorem ipus lorem ipus lorem ipus lorem ipus lorem ipus lorem ipus lorem ipus lorem ipus lorem ipus lorem
-          ipus lorem ipus lorem ipus lorem ipus lorem ipus lorem ipus lorem ipus lorem ipus lorem ipus
+        <h1 className={styles.h1} style={{marginTop: "50px"}}>Výstavba</h1>
+        <p className={styles.serviceParagraph}>
+          Pracujeme na tom!
         </p>
       </ContainerCard>
     

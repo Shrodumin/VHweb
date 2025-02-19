@@ -24,6 +24,7 @@ function CreatePost({route, method}) {
             const res = await api.post(route, formData)
             var path = route
             path = path.substring(0, path.lastIndexOf('/'))
+            path = '/' + path.substring(path.indexOf('/') + 1);
             navigate(`${path}`)
         }
         catch(error) {

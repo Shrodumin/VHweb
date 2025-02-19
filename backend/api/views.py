@@ -8,6 +8,13 @@ from django.contrib.auth.models import User as Auth
 from django.views import View
 from rest_framework.response import Response
 from .models import Realisation, Post
+from rest_framework.response import Response
+from rest_framework import status
+from rest_framework.parsers import MultiPartParser, FormParser
+from django.core.mail import EmailMessage
+from django.http import JsonResponse
+
+import logging
 
 # Create your views here.
 
@@ -87,3 +94,27 @@ class CreatePosts(generics.ListCreateAPIView):
         else:
             print(serializer.errors)
             return Response(serializer.errors, status=400)
+        
+logger = logging.getLogger(__name__)
+
+class SendPDFEmailView(generics.GenericAPIView):
+    permission_classes = [AllowAny]
+    parser_classes = [MultiPartParser, FormParser]
+
+    def post(self, request, *args, **kwargs):
+        if 'pdf' not in request.FILES:
+            return JsonResponse({'error': 'No file attached'}, status=400)
+
+        pdf_file = request.FILES['pdf']
+        email = 'tomaspenkava1@gmail.com'
+
+        # Odeslání e-mailu s PDF přílohou
+        email_message = EmailMessage(
+            subject='Zakázkový formulář',
+            body='Zasíláme vygenerované PDF ze zakázkového formuláře.',
+            to=[email],
+        )
+        email_message.attach(pdf_file.name, pdf_file.read(), 'application/pdf')
+        email_message.send()
+
+        return JsonResponse({'message': 'E-mail byl úspěšně odeslán.'})

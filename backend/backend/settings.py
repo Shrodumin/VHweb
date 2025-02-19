@@ -44,6 +44,17 @@ DEBUG = True
 
 ALLOWED_HOSTS = ["*"]
 
+# settings.py
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+
+#EMAIL_FILE_PATH = '/mails/stored'  # Nastav cestu, kam se uloží e-maily
+
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'tomaspenkava1@gmail.com'
+EMAIL_HOST_PASSWORD = 'dpgc fgor axna onja'
+
 
 REST_FRAMEWORK = {
     "DEFAULT_AUTHENTICATION_CLASSES": (

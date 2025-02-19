@@ -17,6 +17,7 @@ function logout(){
 
 function isLogged(){
   const accessToken = localStorage.getItem(ACCESS_TOKEN)
+  
   if(!accessToken) return false
 
   const decoded = jwtDecode(accessToken)
@@ -27,10 +28,12 @@ function isLogged(){
   return true
 }
 
+
+
 function NavbarComponent(){
   const location = useLocation();
   const [scrolled, setScrolled] = useState(false);
-  
+  const [cookieAccepted, setCookieAccepted] = useState(localStorage.getItem('cookieConsent') === 'true');
 
   useEffect(() => {
     const handleScroll = () => {
@@ -54,6 +57,20 @@ function NavbarComponent(){
     {key: 3, title: "Mechanizace", image: "/services/mechanizace.png", routeName : "/mechanizace"},
     {key: 4, title: "Lešení", image: "/images/services/leseni.png", routeName : "/leseni"},
   ]
+
+  const handleAcceptCookies = () => {
+    localStorage.setItem('cookieConsent', 'true');
+    setCookieAccepted(true);
+    console.log('Cookies accepted');
+    // Spuštění trackovacích skriptů (např. Google Analytics) zde
+  };
+  
+  const handleDeclineCookies = () => {
+    localStorage.setItem('cookieConsent', 'false');
+    setCookieAccepted(false);
+    console.log('Cookies declined');
+    // Můžeš zde smazat všechny nepotřebné cookies
+  };
 
   return (
     <>
@@ -98,8 +115,17 @@ function NavbarComponent(){
           )
         }
       </Navbar>
-      <CookieConsent buttonText="OK">
-        Tahle stránka využívá cookies
+      <CookieConsent
+        enableDeclineButton
+        onAccept={handleAcceptCookies}
+        onDecline={handleDeclineCookies}
+        buttonText="Přijmout"
+        declineButtonText="Odmítnout"
+        style={{ background: "#333", color: "#fff" }}
+        buttonStyle={{ background: "#007bff", color: "#fff", fontSize: "13px" }}
+        declineButtonStyle={{ background: "#ff4d4d", color: "#fff", fontSize: "13px" }}
+      >
+        Tato stránka používá cookies, aby vám poskytla co nejlepší zážitek. Kliknutím na "Přijmout" souhlasíte s jejich použitím.
       </CookieConsent>
     </>
   );

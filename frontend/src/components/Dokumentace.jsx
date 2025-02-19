@@ -2,7 +2,7 @@ import React from "react";
 import NavbarComponent from "../pages/Navbar";
 import { Spinner } from "react-bootstrap";
 import ContainerCard from "./ContainerCard";
-import "../styles/ServiceTab.css";
+import styles from "../styles/ServiceTab.module.css";
 
 const Dokumentace = () => {
     const [isImageLoading, setIsImageLoading] = useState(true); // Stav načítání

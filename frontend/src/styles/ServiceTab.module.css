@@ -1,0 +1,18 @@
+.h1 {
+    text-align: center;
+}
+
+
+.serviceParagraph{
+    padding: 50px; 
+    margin-left: 50px; 
+    margin-right: 50px;
+}
+
+@media screen and (max-width: 768px) {
+    .serviceParagraph{
+        padding: 10px;
+        margin-left: 0;
+        margin-right: 0;
+    }
+}

@@ -1,0 +1,50 @@
+.a {
+    text-decoration: none;
+    color: black;
+}
+
+.cardStyle {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    padding: 100px;
+    height: auto;
+}
+
+.mapContainer {
+    width: 60%;
+    position: relative;
+}
+
+.paragraph {
+    width: 40%;
+}
+
+.iframe{
+    width: 100%;
+    height: 500px;
+}
+
+
+/* Pro mobilní zařízení - mapa se přesune pod text */
+@media screen and (max-width: 768px) {
+    .cardStyle {
+        flex-direction: column; /* Položí obsah pod sebe */
+        padding: 20px;
+    }
+
+    .mapContainer {
+        width: 100%; /* Mapa zabere celou šířku */
+        margin-top: 20px;
+    }
+
+    .paragraph {
+        width: 100%; /* Text zabere celou šířku */
+    }
+
+    .iframe{
+        width: 100%;
+        height: 100%;
+    }
+}
+
