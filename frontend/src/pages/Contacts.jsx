@@ -25,7 +25,8 @@ function Contacts() {
           </Spinner>
         </div>
       ) : (
-        <ContainerCard image="/intro/intro.jpg" className="d-flex justify-content-between">
+        <ContainerCard image="/intro/intro.jpg" className={`d-flex justify-content-between `}
+          style={{ minHeight: "100vh", paddingBottom: "50px" }}>
           <div className={`d-flex justify-content-between ${styles.cardStyle}`}>
             <div className={styles.paragraph}>
               <h1 style={{ textAlign: "left" }}>Kontakty</h1>
