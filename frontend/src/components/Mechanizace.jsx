@@ -28,7 +28,7 @@ const Mechanizace = () => {
           <ContainerCard
           image="/intro/intro.jpg"
           style={{
-            // additional styles for the container
+            height: "100vh"
           }}
         >
           <h1 className={styles.h1} style={{marginTop: "50px"}}>Mechanizace</h1>

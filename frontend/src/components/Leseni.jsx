@@ -25,6 +25,9 @@ const Leseni = () => {
         </div>
       ) : (
         <ContainerCard
+          style={{
+            height: "100vh"
+          }}
           image="/intro/intro.jpg"
         >
           <h1 className={styles.h1} style={{marginTop: "50px"}}>Lešení</h1>

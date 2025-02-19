@@ -8,7 +8,7 @@ const ContainerCard = ({ children, image, style }) => {
       backgroundImage: `url('${image}')`,
       backgroundSize: "cover",
       backgroundPosition: "center",
-      height: "100vh",
+      minHeight: "85vh",
       ...style,
     }}>
       <Card style={{

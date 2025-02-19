@@ -12,8 +12,11 @@
 }
 
 .mapContainer {
-    width: 60%;
     position: relative;
+    width: 100%;
+    max-width: 600px; /* Můžeš upravit podle designu */
+    height: 400px; /* Výchozí výška */
+    overflow: hidden; /* Skryje přetékání */
 }
 
 .paragraph {
@@ -25,9 +28,12 @@
     height: 500px;
 }
 
+.container-fluid{
+    height: auto;
+}
 
 /* Pro mobilní zařízení - mapa se přesune pod text */
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 920px) {
     .cardStyle {
         flex-direction: column; /* Položí obsah pod sebe */
         padding: 20px;
@@ -44,6 +50,10 @@
 
     .iframe{
         width: 100%;
+        height: 50%;
+    }
+
+    .container-fluid{
         height: 100%;
     }
 }
