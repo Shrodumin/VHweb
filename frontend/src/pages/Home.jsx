@@ -59,7 +59,15 @@ function Home() {
             <div className="row">
               <div className="col-md-6">
                 <p className="text-justify">
-                  Firma byla založena v roce 1991 panem Vladimírem Hvězdou. Od roku 2008 provozujeme stavební činnost pod názvem VH MONT-STAV s.r.o. Patříme mezi menší stavební firmy se sídlem v Náměšti nad Oslavou a působností zejména v kraji Vysočina.
+                  Jsme rodinná stavební firma se zkušenostmi přesahující generaci. Naším
+                  hlavním heslem je: „Společně vytvoříme váš domov“. Ať už si pod slovem
+                  domov představíte cokoliv, pro nás nic není překážkou. Rádi se podílíme na
+                  nové výstavbě, ale také na rekonstrukci vašich stávajících domovů. Naše
+                  firma se pohybuje nejen na soukromých projektech, ale také v oblasti
+                  veřejného sektoru. Rodinné prostředí se prolíná celou naší společností. Naší
+                  součástí je i začleňování znevýhodněných skupin zaměstnanců, čímž se jim
+                  snažíme zlepšit jejich životní situaci. Stejně tak tomu je při podpoře lokálních
+                  událostí a neziskových organizací.
                 </p>
                 <p className="text-justify">
                   <b>Specializujeme se na:</b> {realisations.map((realisation, index) => (

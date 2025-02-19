@@ -32,7 +32,15 @@ const Vystavba = () => {
       >
         <h1 className={styles.h1} style={{marginTop: "50px"}}>Výstavba</h1>
         <p className={styles.serviceParagraph}>
-          Pracujeme na tom!
+        Chcete postavit dům? Rádi vám s tím pomůžeme a splníme vám váš sen.
+        Naší doménou však není pouze výstavba rodinných domů na klíč.
+        Zabýváme se také dílčími projekty jako jsou výstavby betonových plotů,
+        zámkové dlažby, příjezdové cesty, sklepy, garáže, zateplení, fasády a
+        nebo pouze hrubá stavba či základová deska. Sen totiž nemusí být pouze
+        celý dům, ale třeba jenom jeho část a my vám s tím rádi pomůžeme. Jste
+        šikovní a chtěli byste se na svém snu podílet sami vlastními silami a
+        zároveň tím nějakou korunu ušetřit? S námi můžete přiložit ruku k dílu a
+        kde co si udělat sami, všechno je to o domluvě a u nás to není překážkou.
         </p>
       </ContainerCard>
     
