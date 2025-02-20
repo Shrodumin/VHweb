@@ -5,6 +5,7 @@ import { Image, Spinner } from "react-bootstrap";
 import api from "../api";
 import React from "react";
 import { Link } from "react-router-dom";
+import Footer from "../components/Footer";
 
 function Home() {
   const [isLoading, setIsLoading] = useState(true); // Stav načítání
@@ -58,7 +59,7 @@ function Home() {
           <div className="container" style={{ marginTop: "50px", marginBottom: "50px" }}>
             <div className="row">
               <div className="col-md-6">
-                <p className="text-justify">
+                <p className="text-justify" style={{ textAlign: "justify" }}>
                   Jsme rodinná stavební firma se zkušenostmi přesahující generaci. Naším
                   hlavním heslem je: „Společně vytvoříme váš domov“. Ať už si pod slovem
                   domov představíte cokoliv, pro nás nic není překážkou. Rádi se podílíme na
@@ -83,6 +84,7 @@ function Home() {
               </div>
             </div>
           </div>
+          <Footer/>
         </>
       )}
     </>

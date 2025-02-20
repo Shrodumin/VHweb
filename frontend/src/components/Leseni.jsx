@@ -34,10 +34,10 @@ const Leseni = () => {
           <p className={styles.serviceParagraph}>
           Nabízíme krátkodobý i dlouhodobý pronájem lešení přesahující i 1000 m<sup>2</sup>,
           lešení o 50 m<sup>2</sup> pro nás však není problém. Nejprve technik provede
-          nákres a předběžnou kalkulaci na místě stavby, poté vám lešení typu RUX
-          dovezeme na místo, postavíme, zajistíme bezpečnost, a po provedení díla
+          nákres a předběžnou kalkulaci na místě stavby, poté Vám lešení typu RUX
+          dovezeme na místo, postavíme, zajistíme bezpečnost a po provedení díla
           opět demontujeme a odvezeme. Pokud si však chcete lešení odvést a
-          postavit svépomocí rádi vám ho vypůjčíme přímo z našeho skladu.
+          postavit svépomocí rádi Vám ho vypůjčíme přímo z našeho skladu.
           </p>
         </ContainerCard>
       )};

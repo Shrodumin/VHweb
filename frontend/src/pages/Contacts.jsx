@@ -35,6 +35,8 @@ function Contacts() {
               <ul>
                 <li>
                   <a className={styles.a} href="tel:+420602545077">+420 602 545 077</a><br></br>
+                </li>
+                <li>
                   <a className={styles.a} href="tel:+420603859971">+420 603 859 971</a>
                 </li>
               </ul>

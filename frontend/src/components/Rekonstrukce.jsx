@@ -32,14 +32,14 @@ const Rekonstrukce = () => {
         >
           <h1 className={styles.h1} style={{ marginTop: "50px" }}>Rekonstrukce</h1>
           <p className={styles.serviceParagraph}>
-          Nejenom nové domy, ale i ty staré s příběhem pro nás nejsou oříškem.
-          Chcete si proházet místnosti v domě, tak že z komory bude koupelna?
+          Nejenom nové domy, ale i ty staré s příběhem, pro nás nejsou oříškem.
+          Chcete si proházet místnosti v domě tak, že z komory bude koupelna?
           Vyměnit celé bytové jádro? Zateplit a udělat novou fasádu, nebo jenom
-          udělat nové omítky uvnitř domu? Ani to pro nás není problém, rádi vám
+          udělat nové omítky uvnitř domu? Ani to pro nás není problém! Rádi Vám
           pomůžeme udělat ze starého nové. Rekonstrukci provádíme tak, aby byla
           funkční a ekonomicky přijatelná vždy po předchozí domluvě se
-          zákazníkem. Rádi vám poradíme, aby rekonstrukce byla co nejefektivnější
-          a přesně dle vašeho vkusu.
+          zákazníkem. Rádi Vám poradíme tak, aby rekonstrukce byla co nejefektivnější
+          a přesně dle Vašeho vkusu.
           </p>
         </ContainerCard>
       )}

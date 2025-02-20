@@ -31,12 +31,13 @@ const Mechanizace = () => {
             height: "100vh"
           }}
         >
+          
           <h1 className={styles.h1} style={{marginTop: "50px"}}>Mechanizace</h1>
           <p className={styles.serviceParagraph}>
-          Co se týká mechanizace je naše firma v tomto ohledu plně soběstačná a
+          V oblasti mechanizace je naše firma v tomto ohledu plně soběstačná a
           jsme tak schopni provádět velké množství prací bez nutnosti objednávky
-          dalších služeb. Velké stroje s obsluhou, ale i malé bez obsluhy nabízíme
-          také k pronájmu za příznivé ceny viz. Ceník. Pokud máte šikovné ruce, ale
+          dalších služeb. Velké stroje s obsluhou (ale i malé bez obsluhy) nabízíme
+          také k pronájmu za příznivé ceny. Pokud máte šikovné ruce, ale
           k dokončení vašeho snu vám chybí pouze stroj nebo nářadí, neváhejte nás
           kontaktovat.
           </p>

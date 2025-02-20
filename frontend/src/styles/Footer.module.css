@@ -1,0 +1,52 @@
+.footer {
+    background-color: #19a8a8;
+    color: white;
+    padding: 40px 5%;
+    text-align: center;
+    margin-top: 100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.footerContainer {
+    display: flex;
+    flex-wrap: wrap;  /* Zajišťuje zalomení na menších obrazovkách */
+    justify-content: space-between;
+    width: 100%;
+    max-width: 1200px;
+    margin-top: 20px;
+    text-align: center;
+}
+
+.footerColumn {
+    flex: 1;  
+    padding: 10px 20px;
+    min-width: 250px; /* Každý sloupec bude mít minimální šířku */
+}
+
+/* Odkazy v footeru */
+.footerHref {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.footerHref:hover {
+    text-decoration: underline;
+}
+
+/* Mobilní zobrazení - sloupce pod sebou */
+@media (max-width: 768px) {
+    .footerContainer {
+        flex-direction: column;  /* Sloupce se zobrazí pod sebou */
+        align-items: center;
+        text-align: center;
+    }
+    
+    .footerColumn {
+        width: 100%;
+        text-align: center;
+    }
+}
