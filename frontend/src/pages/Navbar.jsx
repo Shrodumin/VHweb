@@ -68,8 +68,8 @@ function NavbarComponent(){
         <span >Telefon: <a href="tel:+420 603 859 971" style={{color: "#333"}}>+420 603 859 971</a> | </span>
         <span style={{marginRight: "100px"}} >Email: <a href="mailto:kancelar@mont-stav.cz" style={{color: "#333"}}>kancelar@mont-stav.cz</a></span>
       </div>
-        <Navbar.Brand>
-          <img src="/logo/logo.png" alt="Logo" className={scrolled ? 'scrolled-logo' : ''}/>
+        <Navbar.Brand className='imgLogo'>
+          <img src="/logo/logo.png" alt="Logo" style={{height: "auto", width: "100%"}} className={scrolled ? 'scrolled-logo' : ''}/>
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" className='navbar-toggler'/>
         <Navbar.Collapse id="basic-navbar-nav" className="justify-content-end">
