@@ -64,7 +64,7 @@ function Home() {
                   hlavním heslem je: „Společně vytvoříme váš domov“. Ať už si pod slovem
                   domov představíte cokoliv, pro nás nic není překážkou. Rádi se podílíme na
                   nové výstavbě, ale také na rekonstrukci vašich stávajících domovů. Naše
-                  firma se pohybuje nejen na soukromých projektech, ale také v oblasti
+                  firma se pohybuje nejen na soukromých projektech, ale také v oblasti
                   veřejného sektoru. Rodinné prostředí se prolíná celou naší společností. Naší
                   součástí je i začleňování znevýhodněných skupin zaměstnanců, čímž se jim
                   snažíme zlepšit jejich životní situaci. Stejně tak tomu je při podpoře lokálních
