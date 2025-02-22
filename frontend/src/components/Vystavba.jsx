@@ -3,6 +3,7 @@ import NavbarComponent from "../pages/Navbar";
 import { Spinner } from "react-bootstrap";
 import ContainerCard from "./ContainerCard";
 import styles from "../styles/ServiceTab.module.css";
+import Footer from "./Footer";
 
 const Vystavba = () => {
   const [isImageLoading, setIsImageLoading] = useState(true); // Stav načítání
@@ -43,8 +44,9 @@ const Vystavba = () => {
         kde co si udělat sami, všechno je to o domluvě a u nás to není překážkou.
         </p>
       </ContainerCard>
-    
+      
       )}
+      <Footer />
     </div>
   );
 };

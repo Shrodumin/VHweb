@@ -1,12 +1,15 @@
-import NavbarComponent from "./Navbar"
+import NavbarComponent from "./Navbar";
+import styles from "../styles/PricePool.module.css"; // Přidej styl
 
-function PricePool(){
+function PricePool() {
     return (
         <>
-            <NavbarComponent/>
-            <div>Price Pool here</div>
+            <NavbarComponent />
+            <div className={styles.pdfContainer}>
+                <object className={styles.pdfViewer} data="/2024_Prices.pdf"></object>
+            </div>
         </>
-    )
+    );
 }
 
-export default PricePool
+export default PricePool;

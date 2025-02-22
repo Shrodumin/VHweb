@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom';
 import { Navbar, Nav, Container, Row, Col, NavDropdown, Card} from 'react-bootstrap';
 import NavbarComponent from '../pages/Navbar';
 import RealisationsListComponent from './RealisationsListComponent';
+import Footer from './Footer';
 
 
 function Realisations() {
@@ -14,6 +15,7 @@ function Realisations() {
         <>
         <NavbarComponent/>
         <RealisationsListComponent/>
+        <Footer/>
         </>
     )
 }

@@ -45,3 +45,15 @@
     }
     
 }
+
+.specialisation a{
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+}
+
+.specialisation a:hover{
+    text-decoration: underline;
+    color: black;
+    
+}

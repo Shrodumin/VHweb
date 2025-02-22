@@ -46,7 +46,7 @@ function RealisationsListComponent() {
           <Spinner animation="border" role="status" style={{ width: "5rem", height: "5rem" }} />
         </div>
       ) : (
-        <Container>
+        <Container style={{minHeight: "75vh"}}>
           <Row className="justify-content-center">
             {realisations.map((realisation) => (
               <Col key={realisation.id} xs={12} sm={10} md={6} lg={4} className="d-flex justify-content-center">

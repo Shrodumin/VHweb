@@ -1,0 +1,14 @@
+.containerResp{
+    background-color: rgba(255, 255, 255, 1);
+    border-radius: 20px;
+    padding: 20px;
+    width: 85%;
+    margin: auto;
+    height: 90%;
+}
+
+@media screen and (max-width: 768px) {
+    .containerResp{
+        width: 100%;
+    }
+}

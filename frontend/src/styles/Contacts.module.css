@@ -6,6 +6,13 @@
     gap: 40px;
 }
 
+.cardGrid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* 2 sloupce */
+    gap: 20px;
+    width: 40%; /* Zajistí dostatek místa vedle mapy */
+}
+
 /* Dvouvrstvá sekce - Adresa a mapa */
 .topSection {
     display: flex;
@@ -27,8 +34,8 @@
 /* Mapa - vedle adresy na PC, pod kontakty na mobilu */
 .mapContainer {
     flex: 1;
-    max-width: 500px;
-    height: 400px;
+    width: 60%;
+    height: 600px;
 }
 
 /* Mapa Iframe */
@@ -69,13 +76,11 @@
 .contactCard a {
     color: black;
     text-decoration: none;
-    font-weight: bold; /* Pokud chceš tučné odkazy */
 }
 
 /* Text v kontaktech */
 .contactCard p {
     margin: 0;
-    font-weight: bold; /* Pokud chceš tučné odkazy */
 }
 
 /* Odkazy při najetí myší */
@@ -113,7 +118,7 @@
     .mapContainer {
         width: 100%;
         max-width: none;
-        height: 300px;
+        height: 500px;
         margin-top: 20px;
     }
 
@@ -127,5 +132,10 @@
         max-width: 400px;
         align-items: center;
         text-align: center;
+    }
+
+    .cardGrid {
+        grid-template-columns: 1fr;
+        justify-content: center;
     }
 }

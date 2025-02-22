@@ -7,6 +7,7 @@ import { FaHouse } from "react-icons/fa6";
 import { CiMail } from "react-icons/ci";
 import { FaMobile } from "react-icons/fa";
 import { BsFillTelephoneFill } from "react-icons/bs";
+import Footer from "../components/Footer";
 
 function Contacts() {
   const [isImageLoading, setIsImageLoading] = useState(true);
@@ -30,19 +31,56 @@ function Contacts() {
       ) : (
         <ContainerCard image="/intro/intro.jpg" className={styles.container}>
 
-          {/* Dvouvrstvá sekce - Adresa vlevo, Mapa vpravo */}
+          {/* Hlavní kontejner pro karty a mapu */}
           <div className={styles.topSection}>
-            <div className={styles.infoContainer}>
-              <h1>Kontakty</h1><br/><br/>
-              <p><FaHouse className={styles.icon} /> Masarykovo náměstí 105,<br />675 71, Náměšť nad Oslavou</p>
-              <p><b>IČ:</b> 28263511</p>
-              <p><b>DIČ:</b> CZ28263511</p>
-              Společnost je zapsána v OR u Krajského soudu v Brně, spisová značka C 57230 
 
+            {/* Grid kontejner pro karty */}
+            <div className={styles.cardGrid}>
+              <Card className={styles.contactCard}>
+                <Card.Body>
+                  <Card.Title>Adresa</Card.Title>
+                  <Card.Text>
+                    <FaHouse className={styles.icon} /> Masarykovo náměstí 105,<br />675 71, Náměšť nad Oslavou <br/>
+                    <b>IČ:</b> 28263511 <br />
+                    <b>DIČ:</b> CZ28263511 <br />
+                    Společnost je zapsána v OR<br/> u Krajského soudu v Brně,<br/>spisová značka C 57230 
+                  </Card.Text>
+                </Card.Body>
+              </Card>
 
+              <Card className={styles.contactCard}>
+                <Card.Body>
+                  <Card.Title>Ing. Martin Kopuletý</Card.Title>
+                  <Card.Text>
+                    <FaMobile className={styles.icon} /> <a href="tel:+420602545077">+420 602 545 077</a><br />
+                    <CiMail className={styles.icon} /> <a href="mailto:kopulety@mont-stav.cz">kopulety@mont-stav.cz</a>
+                  </Card.Text>
+                </Card.Body>
+              </Card>
+
+              <Card className={styles.contactCard}>
+                <Card.Body>
+                  <Card.Title>Kancelář</Card.Title>
+                  <Card.Text>
+                    <FaMobile className={styles.icon} /> <a href="tel:+420603859971">+420 603 859 971</a><br />
+                    <BsFillTelephoneFill className={styles.icon} /> <a href="tel:420568620008">420 568 620 008</a><br />
+                    <CiMail className={styles.icon} /> <a href="mailto:kancelar@mont-stav.cz">kancelar@mont-stav.cz</a>
+                  </Card.Text>
+                </Card.Body>
+              </Card>
+
+              <Card className={styles.contactCard}>
+                <Card.Body>
+                  <Card.Title>Skladové prostory</Card.Title>
+                  <Card.Text>
+                    Újezd u Rosic ev. č. 26<br />
+                    66484 Újezd u Rosic
+                  </Card.Text>
+                </Card.Body>
+              </Card>
             </div>
 
-            {/* Mapa vedle adresy */}
+            {/* Mapa vedle karet na PC, pod kartami na mobilu */}
             <div className={styles.mapContainer}>
               {isIframeLoading && (
                 <div className={styles.spinnerOverlay}>
@@ -60,42 +98,9 @@ function Contacts() {
             </div>
           </div>
 
-          {/* Karty s kontakty */}
-          <div className={styles.cardContainer}>
-            <Card className={styles.contactCard}>
-              <Card.Body>
-                <Card.Title>Kancelář</Card.Title>
-                <Card.Text>
-                  <FaMobile className={styles.icon} /> <a href="tel:+420603859971">+420 603 859 971</a><br />
-                  <BsFillTelephoneFill className={styles.icon} /> <a href="tel:420568620008">420 568 620 008</a><br />
-                  <CiMail className={styles.icon} /> <a href="mailto:kancelar@mont-stav.cz">kancelar@mont-stav.cz</a>
-                </Card.Text>
-              </Card.Body>
-            </Card>
-
-            <Card className={styles.contactCard}>
-              <Card.Body>
-                <Card.Title>Ing. Martin Kopuletý</Card.Title>
-                <Card.Text>
-                  <FaMobile className={styles.icon} /> <a href="tel:+420602545077">+420 602 545 077</a><br />
-                  <CiMail className={styles.icon} /> <a href="mailto:kopulety@mont-stav.cz">kopulety@mont-stav.cz</a>
-                </Card.Text>
-              </Card.Body>
-            </Card>
-
-            <Card className={styles.contactCard}>
-              <Card.Body>
-                <Card.Title>Skladové prostory</Card.Title>
-                <Card.Text>
-                  Újezd u Rosic ev. č. 26<br />
-                  66484 Újezd u Rosic
-                </Card.Text>
-              </Card.Body>
-            </Card>
-          </div>
-
         </ContainerCard>
       )}
+      <Footer />
     </>
   );
 }

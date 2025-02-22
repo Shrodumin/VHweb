@@ -1,0 +1,15 @@
+/* Kontejner, který nastaví velikost */
+.pdfContainer {
+    width: 100vw;
+    height: 85vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* PDF prohlížeč */
+.pdfViewer {
+    width: 100%;
+    height: 100%;
+    border: none;
+}

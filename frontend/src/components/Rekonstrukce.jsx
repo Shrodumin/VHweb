@@ -3,6 +3,7 @@ import NavbarComponent from "../pages/Navbar";
 import { Spinner } from "react-bootstrap";
 import ContainerCard from "./ContainerCard";
 import styles from "../styles/ServiceTab.module.css";
+import Footer from "./Footer";
 
 const Rekonstrukce = () => {
   const [isImageLoading, setIsImageLoading] = useState(true); // Stav načítání
@@ -43,7 +44,9 @@ const Rekonstrukce = () => {
           </p>
         </ContainerCard>
       )}
+      <Footer />
     </div>
+    
   );
 };
 

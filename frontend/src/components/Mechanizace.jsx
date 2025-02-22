@@ -3,6 +3,7 @@ import NavbarComponent from "../pages/Navbar";
 import { Spinner } from "react-bootstrap";
 import ContainerCard from "./ContainerCard";
 import styles from "../styles/ServiceTab.module.css";
+import Footer from "./Footer";
 
 const Mechanizace = () => {
 
@@ -44,6 +45,7 @@ const Mechanizace = () => {
         </ContainerCard>
       
         )}
+        <Footer />
       </div>
     );
   };

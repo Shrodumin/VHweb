@@ -3,6 +3,7 @@ import NavbarComponent from "../pages/Navbar";
 import { Spinner } from "react-bootstrap";
 import ContainerCard from "./ContainerCard";
 import styles from "../styles/ServiceTab.module.css";
+import Footer from "./Footer";
 
 const Leseni = () => {
     const [isImageLoading, setIsImageLoading] = useState(true); // Stav načítání
@@ -40,7 +41,8 @@ const Leseni = () => {
           postavit svépomocí rádi Vám ho vypůjčíme přímo z našeho skladu.
           </p>
         </ContainerCard>
-      )};
+      )}
+      <Footer />
       </div>
     );
   };

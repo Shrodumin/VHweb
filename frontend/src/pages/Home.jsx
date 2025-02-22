@@ -70,8 +70,8 @@ function Home() {
                   snažíme zlepšit jejich životní situaci. Stejně tak tomu je při podpoře lokálních
                   událostí a neziskových organizací.
                 </p>
-                <p className="text-justify">
-                  <b>Specializujeme se na:</b> {realisations.map((realisation, index) => (
+                <p className="text-justify specialisation">
+                  Specializujeme se na: {realisations.map((realisation, index) => (
                     <React.Fragment key={index}>
                       <Link to={`/realisations/${realisation.id}/posts`}>{realisation.title}</Link>
                       {index < realisations.length - 2 ? ", " : index === realisations.length - 2 ? " a " : "."}
