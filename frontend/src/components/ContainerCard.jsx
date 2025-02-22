@@ -26,9 +26,9 @@ const ContainerCard = ({ children, image, style }) => {
   return (
     <Container fluid style={{
       paddingTop: isMobile ? "0px" : "50px",
-      paddingRight: isMobile ? "0px" : "20px",
-      paddingBottom: isMobile ? "0px" : "20px",
-      paddingLeft: isMobile ? "0px" : "20px",
+      paddingRight: isMobile ? "0px" : "50px",
+      paddingBottom: isMobile ? "0px" : "50px",
+      paddingLeft: isMobile ? "0px" : "50px",
       backgroundImage: `url('${image}')`,
       backgroundSize: "cover",
       backgroundPosition: "center",
