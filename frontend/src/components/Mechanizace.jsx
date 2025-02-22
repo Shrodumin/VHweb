@@ -42,6 +42,10 @@ const Mechanizace = () => {
         url: '/mechSlides/mech3.png',
         caption: 'Slide 3'
       },
+      {
+        url: '/mechSlides/mech4.png',
+        caption: 'Slide 4'
+      }
     ];
 
     return (
