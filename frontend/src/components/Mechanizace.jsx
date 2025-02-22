@@ -26,22 +26,23 @@ const Mechanizace = () => {
             </Spinner>
           </div>
         ): (
-          <ContainerCard
-          image="/intro/intro.jpg"
-          style={{
-            height: "100vh"
-          }}
-        >
-          
-          <h1 className={styles.h1} style={{marginTop: "50px"}}>Mechanizace</h1>
-          <p className={styles.serviceParagraph}>
-          V oblasti mechanizace je naše firma v tomto ohledu plně soběstačná a
-          jsme tak schopni provádět velké množství prací bez nutnosti objednávky
-          dalších služeb. Velké stroje s obsluhou (ale i malé bez obsluhy) nabízíme
-          také k pronájmu za příznivé ceny. Pokud máte šikovné ruce, ale
-          k dokončení vašeho snu vám chybí pouze stroj nebo nářadí, neváhejte nás
-          kontaktovat.
-          </p>
+          <ContainerCard image="/intro/intro.jpg">
+          <div className={styles.contentWrapper}>
+            <div className={styles.textSection}>
+              <h1 className={styles.h1}>Mechanizace</h1>
+              <p className={styles.serviceParagraph}>
+              V oblasti mechanizace je naše firma v tomto ohledu plně soběstačná a
+              jsme tak schopni provádět velké množství prací bez nutnosti objednávky
+              dalších služeb. Velké stroje s obsluhou (ale i malé bez obsluhy) nabízíme
+              také k pronájmu za příznivé ceny. Pokud máte šikovné ruce, ale
+              k dokončení vašeho snu vám chybí pouze stroj nebo nářadí, neváhejte nás
+              kontaktovat.
+              </p>
+            </div>
+            <div className={styles.imageSection}>
+              <img src="/intro/intro.jpg" alt="Rekonstrukce" className={styles.image} />
+            </div>
+          </div>
         </ContainerCard>
       
         )}

@@ -21,32 +21,32 @@ const Rekonstrukce = () => {
       <NavbarComponent />
       {isImageLoading ? (
         <div className="loading-container" style={{ display: "flex", justifyContent: "center", alignItems: "center", height: "100vh" }}>
-          <Spinner animation="border" role="status" style={{ width: "5rem", height: "5rem" }}>
-          </Spinner>
+          <Spinner animation="border" role="status" style={{ width: "5rem", height: "5rem" }}></Spinner>
         </div>
       ) : (
-        <ContainerCard
-        style={{
-          height: "100vh"
-        }}
-          image="/intro/intro.jpg"
-        >
-          <h1 className={styles.h1} style={{ marginTop: "50px" }}>Rekonstrukce</h1>
-          <p className={styles.serviceParagraph}>
-          Nejenom nové domy, ale i ty staré s příběhem, pro nás nejsou oříškem.
-          Chcete si proházet místnosti v domě tak, že z komory bude koupelna?
-          Vyměnit celé bytové jádro? Zateplit a udělat novou fasádu, nebo jenom
-          udělat nové omítky uvnitř domu? Ani to pro nás není problém! Rádi Vám
-          pomůžeme udělat ze starého nové. Rekonstrukci provádíme tak, aby byla
-          funkční a ekonomicky přijatelná vždy po předchozí domluvě se
-          zákazníkem. Rádi Vám poradíme tak, aby rekonstrukce byla co nejefektivnější
-          a přesně dle Vašeho vkusu.
-          </p>
+        <ContainerCard image="/intro/intro.jpg">
+          <div className={styles.contentWrapper}>
+            <div className={styles.textSection}>
+              <h1 className={styles.h1}>Rekonstrukce</h1>
+              <p className={styles.serviceParagraph}>
+                Nejenom nové domy, ale i ty staré s příběhem, pro nás nejsou oříškem.
+                Chcete si proházet místnosti v domě tak, že z komory bude koupelna?
+                Vyměnit celé bytové jádro? Zateplit a udělat novou fasádu, nebo jenom
+                udělat nové omítky uvnitř domu? Ani to pro nás není problém! Rádi Vám
+                pomůžeme udělat ze starého nové. Rekonstrukci provádíme tak, aby byla
+                funkční a ekonomicky přijatelná vždy po předchozí domluvě se
+                zákazníkem. Rádi Vám poradíme tak, aby rekonstrukce byla co nejefektivnější
+                a přesně dle Vašeho vkusu.
+              </p>
+            </div>
+            <div className={styles.imageSection}>
+              <img src="/intro/intro.jpg" alt="Rekonstrukce" className={styles.image} />
+            </div>
+          </div>
         </ContainerCard>
       )}
       <Footer />
     </div>
-    
   );
 };
 

@@ -2,19 +2,67 @@
     text-align: center;
 }
 
-
-.serviceParagraph{
-    padding: 50px; 
-    margin-left: 50px; 
-    margin-right: 50px;
-    text-align: justify;
+/* Kontejner pro rozložení textu a obrázku */
+.contentWrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 50px;
+    gap: 20px;
 }
 
+/* Levá část - Text */
+.textSection {
+    flex: 0 0 40%;
+    padding-right: 20px;
+}
 
+/* Pravá část - Obrázek */
+.imageSection {
+    flex: 0 0 60%;
+    display: flex;
+    justify-content: center;
+}
+
+.image {
+    width: 100%;
+    max-width: 600px;
+    border-radius: 10px;
+}
+
+/* Textový obsah */
+.serviceParagraph {
+    text-align: justify;
+    padding: 20px;
+    margin: 0;
+}
+
+/* RESPONSIVITA - Mobilní verze */
 @media screen and (max-width: 768px) {
-    .serviceParagraph{
+    .contentWrapper {
+        flex-direction: column;
+        padding: 20px;
+        text-align: center;
+    }
+
+    .textSection {
+        flex: 1;
+        width: 100%;
+        padding-right: 0;
+    }
+
+    .imageSection {
+        flex: 1;
+        width: 100%;
+    }
+
+    .image {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .serviceParagraph {
         padding: 10px;
-        margin-left: 0;
-        margin-right: 0;
     }
 }

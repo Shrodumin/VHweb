@@ -26,23 +26,26 @@ const Vystavba = () => {
         </div>
       ): (
         <ContainerCard
-        image="/intro/intro.jpg"
-        style={{
-          height: "100vh"
-        }}
-      >
-        <h1 className={styles.h1} style={{marginTop: "50px"}}>Výstavba</h1>
-        <p className={styles.serviceParagraph}>
-        Chcete postavit dům? Rádi Vám s tím pomůžeme a splníme Vám Váš sen.
-        Naší doménou však není pouze výstavba rodinných domů na klíč.
-        Zabýváme se také dílčími projekty jako jsou výstavby betonových plotů,
-        zámkové dlažby, příjezdové cesty, sklepy, garáže, zateplení, fasády a
-        nebo pouze hrubá stavba či základová deska. Sen totiž nemusí být pouze
-        celý dům, ale třeba jenom jeho část a my Vám s tím rádi pomůžeme. <br></br><br></br>Jste
-        šikovní a chtěli byste se na svém snu podílet sami vlastními silami a
-        zároveň tím nějakou korunu ušetřit? S námi můžete přiložit ruku k dílu a
-        kde co si udělat sami, všechno je to o domluvě a u nás to není překážkou.
-        </p>
+        image="/intro/intro.jpg">
+        <div className={styles.contentWrapper}>
+          <div className={styles.textSection}>
+            <h1 className={styles.h1}>Výstavba</h1>
+            <p className={styles.serviceParagraph}>
+              Chcete postavit dům? Rádi Vám s tím pomůžeme a splníme Vám Váš sen.
+              Naší doménou však není pouze výstavba rodinných domů na klíč.
+              Zabýváme se také dílčími projekty jako jsou výstavby betonových plotů,
+              zámkové dlažby, příjezdové cesty, sklepy, garáže, zateplení, fasády a
+              nebo pouze hrubá stavba či základová deska. Sen totiž nemusí být pouze
+              celý dům, ale třeba jenom jeho část a my Vám s tím rádi pomůžeme. <br></br><br></br>Jste
+              šikovní a chtěli byste se na svém snu podílet sami vlastními silami a
+              zároveň tím nějakou korunu ušetřit? S námi můžete přiložit ruku k dílu a
+              kde co si udělat sami, všechno je to o domluvě a u nás to není překážkou.
+            </p>
+          </div>
+          <div className={styles.imageSection}>
+            <img src="/intro/intro.jpg" alt="Rekonstrukce" className={styles.image} />
+          </div>
+        </div>
       </ContainerCard>
       
       )}
