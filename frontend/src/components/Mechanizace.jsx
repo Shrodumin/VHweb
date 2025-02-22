@@ -4,6 +4,8 @@ import { Spinner } from "react-bootstrap";
 import ContainerCard from "./ContainerCard";
 import styles from "../styles/ServiceTab.module.css";
 import Footer from "./Footer";
+import "react-slideshow-image/dist/styles.css";
+import { Slide } from "react-slideshow-image";
 
 const Mechanizace = () => {
 
@@ -16,6 +18,31 @@ const Mechanizace = () => {
       image.onload = () => setIsImageLoading(false); // Načtení obrázku
       image.onerror = () => setIsImageLoading(false); // I při chybě skryj spinner
     }, []);
+
+    
+    const divStyle = {
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      backgroundSize: 'cover',
+      width: "100%",
+      height: "auto"
+    }
+
+    const slideImages = [
+      {
+        url: '/mechSlides/mech1.png',
+        caption: 'Slide 1'
+      },
+      {
+        url: '/mechSlides/mech2.png',
+        caption: 'Slide 2'
+      },
+      {
+        url: '/mechSlides/mech3.png',
+        caption: 'Slide 3'
+      },
+    ];
 
     return (
       <div>
@@ -40,7 +67,13 @@ const Mechanizace = () => {
               </p>
             </div>
             <div className={styles.imageSection}>
-              <img src="/intro/intro.jpg" alt="Rekonstrukce" className={styles.image} />
+              <Slide>
+                  {slideImages.map((slideImage, index)=> (
+                  <div key={index} className={styles.slideContainer}>
+                    <img src={slideImage.url} alt={slideImage.caption} className={styles.slideImage}></img>
+                  </div>
+                ))} 
+              </Slide>
             </div>
           </div>
         </ContainerCard>

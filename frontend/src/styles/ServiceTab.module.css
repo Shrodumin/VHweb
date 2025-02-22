@@ -14,20 +14,18 @@
 
 /* Levá část - Text */
 .textSection {
-    flex: 0 0 40%;
+    width: 60%;
     padding-right: 20px;
 }
 
 /* Pravá část - Obrázek */
 .imageSection {
-    flex: 0 0 60%;
-    display: flex;
+    width: 40%;
     justify-content: center;
 }
 
 .image {
     width: 100%;
-    max-width: 600px;
     border-radius: 10px;
 }
 
@@ -36,6 +34,22 @@
     text-align: justify;
     padding: 20px;
     margin: 0;
+}
+
+/* Slideshow kontejner */
+.slideContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+/* Obrázky ve slideshow */
+.slideImage {
+    width: 100%;
+    max-height: 500px;
+    object-fit: contain; /* Zajistí, že obrázek nebude oříznut */
+    border-radius: 10px;
 }
 
 /* RESPONSIVITA - Mobilní verze */
@@ -59,10 +73,6 @@
 
     .image {
         width: 100%;
-        max-width: 100%;
-    }
-
-    .serviceParagraph {
-        padding: 10px;
+   
     }
 }
