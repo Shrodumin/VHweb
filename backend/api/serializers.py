@@ -17,7 +17,7 @@ class UserSerializer(serializers.HyperlinkedModelSerializer):
 class PostSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Post
-        fields = ["id", "title", "content", "image", "created_at"]
+        fields = ["id", "title", "visible", "content", "image", "created_at"]
         extra_kwargs = {
             "image": {"required": False},
             "created_at": {"read_only": True},

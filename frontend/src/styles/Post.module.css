@@ -1,0 +1,67 @@
+.imageContainer {
+    position: relative;
+    text-align: center;
+    width: auto;
+    margin: 20px;
+    overflow: hidden;
+    border-radius: 10px;
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  .imageContainer::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: transparent;
+    transition: background-color 0.3s ease-in-out;
+    z-index: 1; /* Modrý overlay je pod textem */
+  }
+  
+  .imageContainer:hover::before {
+    background-color: #19a8a88e; /* Modrý overlay */
+  }
+  
+  .realisationImage {
+    transition: transform 1.0s ease-in-out;
+    position: relative;
+    z-index: 0; /* Obrázek je pod všemi overlayemi */
+  }
+  
+  .imageContainer:hover .realisationImage {
+    transform: scale(1.1);
+  }
+  
+  .imageContainer:hover{
+    transform: scale(1.1);
+  }
+  
+  .imageOverlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: #19a8a88e; /* Tmavý overlay */
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    z-index: 2; /* Ujistěte se, že text je nad modrým overlayem */
+  }
+  
+  .imageContainer:hover .imageOverlay {
+    opacity: 1; /* Zobrazí overlay při hoveru */
+  }
+  
+  .overlayContent {
+    color: white;
+    font-size: 1.2em;
+    text-align: center;
+    font-weight: bold;
+    z-index: 3; /* Text je nad všemi overlayemi */
+  }
