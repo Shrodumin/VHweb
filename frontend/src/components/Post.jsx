@@ -81,7 +81,7 @@ function Post() {
           <Row className="justify-content-center">
             {posts.map((post, index) => (
               <Col key={post.id} xs={12} sm={10} md={6} lg={4} className="d-flex justify-content-center">
-                <div className={styles.imageContainer} onClick={handleImageClick} style={{ cursor: "pointer" }}>
+                <div className={styles.imageContainer} onClick={() => handleImageClick(index)} style={{ cursor: "pointer" }}>
                   <Image
                     src={`https://res.cloudinary.com/dotqkdyma/${post.image}`}
                     alt={post.title}
@@ -122,7 +122,7 @@ function Post() {
             alt: post.title,
             title: post.title
           }))}
-          index={selectedImage && selectedImage.index !== undefined ? selectedImage.index : 0}
+          index={selectedImage ? selectedImage : 0}
           />
     </>
   );
