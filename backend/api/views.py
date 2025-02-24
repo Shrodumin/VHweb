@@ -46,8 +46,23 @@ class CreateRealisation(generics.ListCreateAPIView):
     permission_classes = [AllowAny] # IsAdminUser later 
 
     def get_queryset(self):
-        user = self.request.user
-        return Realisation.objects.all()  # or filter by user if needed
+        # Získání všech realizací
+        queryset = Realisation.objects.all()
+
+        # Funkce pro extrakci roku z názvu
+        def extract_year(title):
+            try:
+                # Pokusíme se získat první část názvu a převést ji na číslo
+                year = int(title.split()[0])
+                return year
+            except (IndexError, ValueError):
+                # Pokud rok nelze extrahovat, vrátíme velmi starý rok (např. 1900)
+                return 1900
+
+        # Seřazení podle roku extrahovaného z názvu
+        queryset = sorted(queryset, key=lambda x: extract_year(x.title), reverse=False)
+
+        return queryset
         
     def perform_create(self, serializer):
         if serializer.is_valid():
@@ -71,9 +86,23 @@ class ShowRealisation(generics.ListAPIView):
     permission_classes = [AllowAny] # IsAdminUser later 
 
     def get_queryset(self):
-        user = self.request.user
-        
-        return Realisation.objects.all()  # or filter by user if needed
+        # Získání všech realizací
+        queryset = Realisation.objects.all()
+
+        # Funkce pro extrakci roku z názvu
+        def extract_year(title):
+            try:
+                # Pokusíme se získat první část názvu a převést ji na číslo
+                year = int(title.split()[0])
+                return year
+            except (IndexError, ValueError):
+                # Pokud rok nelze extrahovat, vrátíme velmi starý rok (např. 1900)
+                return 1900
+
+        # Seřazení podle roku extrahovaného z názvu
+        queryset = sorted(queryset, key=lambda x: extract_year(x.title), reverse=False)
+
+        return queryset
 
 class CreatePosts(generics.ListCreateAPIView):
     serializer_class = PostSerializer
