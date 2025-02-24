@@ -50,8 +50,9 @@ function Contacts() {
 
               <Card className={styles.contactCard}>
                 <Card.Body>
-                  <Card.Title>Ing. Martin Kopuletý</Card.Title>
+                  <Card.Title>Ing. Martin Kopuletý <br/> <br/>Technické dotazy, lešení, kalkulace</Card.Title>
                   <Card.Text>
+                  <br/>
                     <FaMobile className={styles.icon} /> <a href="tel:+420602545077">+420 602 545 077</a><br />
                     <CiMail className={styles.icon} /> <a href="mailto:kopulety@mont-stav.cz">kopulety@mont-stav.cz</a>
                   </Card.Text>
@@ -60,8 +61,9 @@ function Contacts() {
 
               <Card className={styles.contactCard}>
                 <Card.Body>
-                  <Card.Title>Kancelář</Card.Title>
+                  <Card.Title>Kancelář <br/> <br/>Objednávky, fakturace, půjčovna</Card.Title>
                   <Card.Text>
+                  <br/>
                     <FaMobile className={styles.icon} /> <a href="tel:+420603859971">+420 603 859 971</a><br />
                     <BsFillTelephoneFill className={styles.icon} /> <a href="tel:420568620008">420 568 620 008</a><br />
                     <CiMail className={styles.icon} /> <a href="mailto:kancelar@mont-stav.cz">kancelar@mont-stav.cz</a>

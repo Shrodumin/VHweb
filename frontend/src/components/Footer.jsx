@@ -21,7 +21,9 @@ function Footer() {
                     <a href="https://forhelp-autismus.cz/"><p>For Help Autismus</p></a>
                     <p>Charitativní ples Domova bez zámku</p>
                 </div>
+                
             </div>
+            2025 © VH Mont Stav s.r.o. Náměšť nad Oslavou
         </footer>
     );
 }
