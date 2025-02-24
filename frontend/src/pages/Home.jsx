@@ -70,14 +70,6 @@ function Home() {
                   snažíme zlepšit jejich životní situaci. Stejně tak tomu je při podpoře lokálních
                   událostí a neziskových organizací.
                 </p>
-                <p className="text-justify specialisation">
-                  Realizované zakázky: {realisations.map((realisation, index) => (
-                    <React.Fragment key={index}>
-                      <Link to={`/realisations/${realisation.id}/posts`}>{realisation.title}</Link>
-                      {index < realisations.length - 2 ? ", " : index === realisations.length - 2 ? " a " : "."}
-                    </React.Fragment>
-                  ))}
-                </p>
               </div>
               <div className="col-12 col-md-6 d-flex justify-content-center mt-4 mt-md-0">
                 <Image src="/intro/intro2.jpg" alt="Image" fluid rounded />
