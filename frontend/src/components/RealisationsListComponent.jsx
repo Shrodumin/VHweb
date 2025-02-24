@@ -7,6 +7,7 @@ import React from "react";
 function RealisationsListComponent() {
   const [realisations, setRealisations] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [loadedImages, setLoadedImages] = useState({}); // Sleduje načtené obrázky
 
   useEffect(() => {
     getRealisations();
@@ -17,23 +18,16 @@ function RealisationsListComponent() {
       const res = await api.get("/api/realisations/");
       const data = res.data;
       setRealisations(data);
-
-      // Čekáme na načtení všech obrázků
-      const imagePromises = data.map((realisation) => {
-        return new Promise((resolve) => {
-          const img = new window.Image();
-          img.src = `https://res.cloudinary.com/dotqkdyma/${realisation.image}`;
-          img.onload = resolve;
-          img.onerror = resolve;
-        });
-      });
-
-      await Promise.all(imagePromises);
-      setIsLoading(false);
+      setIsLoading(false); // Ukončíme hlavní loading, jakmile jsou data načtena
     } catch (err) {
       console.error(err);
       setIsLoading(false);
     }
+  };
+
+  // Funkce pro sledování načtení obrázku
+  const handleImageLoad = (id) => {
+    setLoadedImages((prev) => ({ ...prev, [id]: true }));
   };
 
   return (
@@ -46,14 +40,14 @@ function RealisationsListComponent() {
           <Spinner animation="border" role="status" style={{ width: "5rem", height: "5rem" }} />
         </div>
       ) : (
-        <Container style={{minHeight: "75vh"}}>
+        <Container style={{ minHeight: "75vh" }}>
           <Row className="justify-content-center">
             {realisations.map((realisation) => (
               <Col key={realisation.id} xs={12} sm={10} md={6} lg={4} className="d-flex justify-content-center">
                 <Card
                   style={{
                     width: "100%",
-                    maxWidth: "350px", // Oprava přesahování
+                    maxWidth: "350px",
                     margin: "20px",
                     borderRadius: "10px",
                     boxShadow: "0 0 10px rgba(0, 0, 0, 0.1)",
@@ -87,6 +81,20 @@ function RealisationsListComponent() {
                         alignItems: "center",
                       }}
                     >
+                      {/* Zobrazíme spinner, dokud se obrázek nenačte */}
+                      {!loadedImages[realisation.id] && (
+                        <div
+                          style={{
+                            width: "100%",
+                            height: "200px",
+                            display: "flex",
+                            justifyContent: "center",
+                            alignItems: "center",
+                          }}
+                        >
+                          <Spinner animation="border" role="status" />
+                        </div>
+                      )}
                       <Image
                         src={`https://res.cloudinary.com/dotqkdyma/${realisation.image}`}
                         alt={realisation.title}
@@ -97,7 +105,9 @@ function RealisationsListComponent() {
                           height: "200px",
                           objectFit: "cover",
                           borderRadius: "10px",
+                          display: loadedImages[realisation.id] ? "block" : "none", // Skryjeme obrázek, dokud se nenačte
                         }}
+                        onLoad={() => handleImageLoad(realisation.id)} // Sledujeme načtení obrázku
                       />
                     </Card.Body>
                   </Link>
