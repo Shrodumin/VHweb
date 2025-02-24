@@ -60,7 +60,7 @@ class CreateRealisation(generics.ListCreateAPIView):
                 return 1900
 
         # Seřazení podle roku extrahovaného z názvu
-        queryset = sorted(queryset, key=lambda x: extract_year(x.title), reverse=False)
+        queryset = sorted(queryset, key=lambda x: extract_year(x.title), reverse=True)
 
         return queryset
         
