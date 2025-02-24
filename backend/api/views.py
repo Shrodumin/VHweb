@@ -57,7 +57,7 @@ class CreateRealisation(generics.ListCreateAPIView):
                 return year
             except (IndexError, ValueError):
                 # Pokud rok nelze extrahovat, vrátíme velmi starý rok (např. 1900)
-                return 1900
+                return 25000
 
         # Seřazení podle roku extrahovaného z názvu
         queryset = sorted(queryset, key=lambda x: extract_year(x.title), reverse=True)
@@ -97,10 +97,10 @@ class ShowRealisation(generics.ListAPIView):
                 return year
             except (IndexError, ValueError):
                 # Pokud rok nelze extrahovat, vrátíme velmi starý rok (např. 1900)
-                return 1900
+                return 25000
 
         # Seřazení podle roku extrahovaného z názvu
-        queryset = sorted(queryset, key=lambda x: extract_year(x.title), reverse=False)
+        queryset = sorted(queryset, key=lambda x: extract_year(x.title), reverse=True)
 
         return queryset
 
