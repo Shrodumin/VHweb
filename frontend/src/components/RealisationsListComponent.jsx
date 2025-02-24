@@ -108,6 +108,7 @@ function RealisationsListComponent() {
                           display: loadedImages[realisation.id] ? "block" : "none", // Skryjeme obrázek, dokud se nenačte
                         }}
                         onLoad={() => handleImageLoad(realisation.id)} // Sledujeme načtení obrázku
+                        loading="eager" // Načítáme obrázky okamžitě
                       />
                     </Card.Body>
                   </Link>
