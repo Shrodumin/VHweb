@@ -1,12 +1,12 @@
-import { Container, Row, Col, Card, Image, Spinner } from "react-bootstrap";
+import { Container, Row, Col, Spinner } from "react-bootstrap";
 import { useEffect, useState } from "react";
 import api from "../api";
-import { useParams, Link } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import NavbarComponent from "../pages/Navbar";
 import Lightbox from "yet-another-react-lightbox";
 import "yet-another-react-lightbox/styles.css";
-import RowsPhotoAlbum from "react-photo-album";
-import "react-photo-album/rows.css";
+import { LazyLoadImage } from "react-lazy-load-image-component";
+import "react-lazy-load-image-component/src/effects/blur.css";
 import styles from "../styles/Post.module.css";
 
 function Post() {
@@ -16,6 +16,7 @@ function Post() {
   const [posts, setPosts] = useState([]);
   const [realisations, setRealisations] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [loadingImages, setLoadingImages] = useState({}); // Ukládá stav načítání obrázků
 
   useEffect(() => {
     getPosts();
@@ -27,7 +28,6 @@ function Post() {
     setLightboxOpen(true);
   };
 
-
   const handleLightboxClose = () => {
     setLightboxOpen(false);
   };
@@ -37,18 +37,6 @@ function Post() {
       const res = await api.get(`api/realisations/${id}/posts`);
       const data = res.data;
       setPosts(data);
-
-      // Preload images
-      const imagePromises = data.map((post) => {
-        return new Promise((resolve) => {
-          const img = new window.Image();
-          img.src = `https://res.cloudinary.com/dotqkdyma/${post.image}`;
-          img.onload = resolve;
-          img.onerror = resolve;
-        });
-      });
-
-      await Promise.all(imagePromises);
       setIsLoading(false);
     } catch (err) {
       console.error(err);
@@ -67,6 +55,14 @@ function Post() {
       .catch((err) => alert(err));
   };
 
+  const handleImageLoadStart = (id) => {
+    setLoadingImages((prev) => ({ ...prev, [id]: true }));
+  };
+
+  const handleImageLoad = (id) => {
+    setLoadingImages((prev) => ({ ...prev, [id]: false }));
+  };
+
   return (
     <>
       <NavbarComponent />
@@ -82,27 +78,31 @@ function Post() {
             {posts.map((post, index) => (
               <Col key={post.id} xs={12} sm={10} md={6} lg={4} className="d-flex justify-content-center">
                 <div className={styles.imageContainer} onClick={() => handleImageClick(index)} style={{ cursor: "pointer" }}>
-                  <Image
-                    src={`https://res.cloudinary.com/dotqkdyma/${post.image}`}
+                  {loadingImages[post.id] && (
+                    <div className="d-flex justify-content-center align-items-center" style={{ width: "100%", height: "250px" }}>
+                      <Spinner animation="border" />
+                    </div>
+                  )}
+                  <LazyLoadImage
+                    src={`https://res.cloudinary.com/dotqkdyma/${post.image}?f_auto&q_auto`}
                     alt={post.title}
                     className={styles.realisationImage}
-                    fluid
-                    onClick={() => handleImageClick(index)} // Předá index obrázku
-                    loading="lazy"
+                    effect="blur"
+                    width="100%"
+                    height="250px"
                     style={{
-                      width: "100%",
-                      height: "250px",
                       objectFit: "cover",
                       borderRadius: "10px",
                       transition: "transform 0.3s ease-in-out",
                       cursor: "pointer",
+                      display: loadingImages[post.id] ? "none" : "block", // Skryj obrázek, pokud se ještě načítá
                     }}
+                    beforeLoad={() => handleImageLoadStart(post.id)}
+                    onLoad={() => handleImageLoad(post.id)}
                   />
-                  {post.visible && ( // Zobrazí název pouze pokud je visible true
+                  {post.visible && (
                     <div className={styles.imageOverlay}>
-                      <div className={styles.overlayContent}>
-                        {post.title}
-                      </div>
+                      <div className={styles.overlayContent}>{post.title}</div>
                     </div>
                   )}
                 </div>
@@ -110,20 +110,17 @@ function Post() {
             ))}
           </Row>
         </Container>
-
-
-        
       )}
-        <Lightbox
-          open={lightboxOpen}
-          close={handleLightboxClose}
-          slides={posts.map((post) => ({
-            src: "https://res.cloudinary.com/dotqkdyma/" + post.image,
-            alt: post.title,
-            title: post.title
-          }))}
-          index={selectedImage ? selectedImage : 0}
-          />
+      <Lightbox
+        open={lightboxOpen}
+        close={handleLightboxClose}
+        slides={posts.map((post) => ({
+          src: `https://res.cloudinary.com/dotqkdyma/${post.image}`,
+          alt: post.title,
+          title: post.title,
+        }))}
+        index={selectedImage ? selectedImage : 0}
+      />
     </>
   );
 }
