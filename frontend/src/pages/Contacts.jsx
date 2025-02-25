@@ -50,7 +50,7 @@ function Contacts() {
 
               <Card className={styles.contactCard}>
                 <Card.Body>
-                  <Card.Title>Ing. Martin Kopuletý <br/> <br/>Technické dotazy, lešení, kalkulace</Card.Title>
+                  <Card.Title>Ing. Martin Kopuletý <br/> <br/><div style={{fontWeight: "normal", fontSize: "16px"}}>Technické dotazy, lešení, kalkulace</div> </Card.Title>
                   <Card.Text>
                   <br/>
                     <FaMobile className={styles.icon} /> <a href="tel:+420602545077">+420 602 545 077</a><br />
@@ -61,11 +61,11 @@ function Contacts() {
 
               <Card className={styles.contactCard}>
                 <Card.Body>
-                  <Card.Title>Kancelář <br/> <br/>Objednávky, fakturace, půjčovna</Card.Title>
+                  <Card.Title>Kancelář <br/> <br/><div style={{fontWeight: "normal", fontSize: "16px"}}>Objednávky, fakturace, půjčovna</div></Card.Title>
                   <Card.Text>
                   <br/>
                     <FaMobile className={styles.icon} /> <a href="tel:+420603859971">+420 603 859 971</a><br />
-                    <BsFillTelephoneFill className={styles.icon} /> <a href="tel:420568620008">420 568 620 008</a><br />
+                    <BsFillTelephoneFill className={styles.icon} /> <a href="tel:+420568620008">+420 568 620 008</a><br />
                     <CiMail className={styles.icon} /> <a href="mailto:kancelar@mont-stav.cz">kancelar@mont-stav.cz</a>
                   </Card.Text>
                 </Card.Body>
