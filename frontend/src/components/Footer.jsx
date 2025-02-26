@@ -23,7 +23,7 @@ function Footer() {
                 </div>
                 
             </div>
-            2025 © VH Mont Stav s.r.o. Náměšť nad Oslavou
+            2025 © VH MONT STAV s.r.o. Náměšť nad Oslavou
         </footer>
     );
 }

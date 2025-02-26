@@ -60,6 +60,10 @@ function RealisationsListComponent() {
                     style={{
                       textDecoration: "none",
                       color: "inherit",
+                      width: "100%",
+                      height: "100%",
+                      display: "flex",
+                      flexDirection: "column",
                     }}
                   >
                     <Card.Header
@@ -79,6 +83,7 @@ function RealisationsListComponent() {
                         display: "flex",
                         justifyContent: "center",
                         alignItems: "center",
+                        verticalAlign: "top",
                       }}
                     >
                       {/* Zobrazíme spinner, dokud se obrázek nenačte */}
@@ -102,9 +107,11 @@ function RealisationsListComponent() {
                         fluid
                         style={{
                           width: "100%",
-                          height: "200px",
+                          verticalAlign: top,
+                          height: "auto",
                           objectFit: "cover",
                           borderRadius: "10px",
+                          margin: "0 auto",
                           display: loadedImages[realisation.id] ? "block" : "none", // Skryjeme obrázek, dokud se nenačte
                         }}
                         onLoad={() => handleImageLoad(realisation.id)} // Sledujeme načtení obrázku
