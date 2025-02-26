@@ -1,8 +1,11 @@
 import React, { useState } from 'react';
-import { Document, Page, Text, View, StyleSheet, pdf, Font } from '@react-pdf/renderer';
+import { Document, Page, Text, View, StyleSheet, pdf, Image } from '@react-pdf/renderer';
 import RobotoRegular from '../fonts/Roboto-Regular.ttf';
 import RobotoItalic from '../fonts/Roboto-Italic.ttf';
 import api from '../api';
+import NavbarComponent from '../pages/Navbar';
+import { Font } from '@react-pdf/renderer';
+import SmallIcon from "/Small_Icon.jpeg";
 
 // Registrace fontu
 Font.register({
@@ -31,6 +34,8 @@ const OrderForm = () => {
     agree: false,
   });
 
+  const [errors, setErrors] = useState({});
+
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
     setFormData({
@@ -39,14 +44,28 @@ const OrderForm = () => {
     });
   };
 
+  const validateForm = () => {
+    const newErrors = {};
+    if (!formData.fullName) newErrors.fullName = 'Jméno a příjmení je povinné';
+    if (!formData.email) newErrors.email = 'E-mail je povinný';
+    if (!formData.phone) newErrors.phone = 'Telefon je povinný';
+    if (!formData.agree) newErrors.agree = 'Musíte souhlasit se zpracováním osobních údajů';
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
+
   const handleSendPdfToBackend = async () => {
+    if (!validateForm()) {
+      alert('Vyplňte prosím všechny povinné položky a souhlaste se zpracováním osobních údajů.');
+      return;
+    }
+
     try {
       const blob = await pdf(<PdfDocument {...formData} />).toBlob();
       const formDataToSend = new FormData();
-      formDataToSend.append('pdf', blob, 'zakazkovy-formular.pdf'); // Připojíme PDF soubor
+      formDataToSend.append('pdf', blob, 'zakazkovy-formular.pdf');
 
-      const res = await api.post('/api/sendPDF', formDataToSend)
-
+      const res = await api.post('/api/sendPDF', formDataToSend);
       alert('PDF bylo úspěšně odesláno na server.');
     } catch (error) {
       console.error('Chyba při odesílání PDF:', error);
@@ -54,174 +73,188 @@ const OrderForm = () => {
     }
   };
 
-
-
-
   return (
-    <form style={formStyle}>
-      <h2>Zakázkový formulář</h2>
+    <>
+      <NavbarComponent />
+      <form style={formStyle}>
+        <h2>Zakázkový formulář</h2>
 
-      <div style={fieldStyle}>
-        <label>Jméno a příjmení (povinné):</label>
-        <input
-          type="text"
-          name="fullName"
-          value={formData.fullName}
-          onChange={handleChange}
-          required
-          placeholder="Vaše jméno a příjmení"
-        />
-      </div>
-
-      <div style={fieldStyle}>
-        <label>Firma (nepovinné):</label>
-        <input
-          type="text"
-          name="company"
-          value={formData.company}
-          onChange={handleChange}
-          placeholder="Název firmy"
-        />
-      </div>
-
-      <div style={fieldStyle}>
-        <label>IČO (nepovinné):</label>
-        <input
-          type="text"
-          name="ico"
-          value={formData.ico}
-          onChange={handleChange}
-          placeholder="Vaše IČO"
-        />
-      </div>
-
-      <div style={fieldStyle}>
-        <label>DIČ (nepovinné):</label>
-        <input
-          type="text"
-          name="dic"
-          value={formData.dic}
-          onChange={handleChange}
-          placeholder="Vaše DIČ"
-        />
-      </div>
-
-      <div style={fieldStyle}>
-        <label>Sídlo (nepovinné):</label>
-        <input
-          type="text"
-          name="address"
-          value={formData.address}
-          onChange={handleChange}
-          placeholder="Adresa sídla"
-        />
-      </div>
-
-      <div style={fieldStyle}>
-        <label>E-mail (povinné):</label>
-        <input
-          type="email"
-          name="email"
-          value={formData.email}
-          onChange={handleChange}
-          required
-          placeholder="Váš e-mail"
-        />
-      </div>
-
-      <div style={fieldStyle}>
-        <label>Telefon (povinné):</label>
-        <input
-          type="tel"
-          name="phone"
-          value={formData.phone}
-          onChange={handleChange}
-          required
-          placeholder="Váš telefon"
-        />
-      </div>
-
-      <div style={fieldStyle}>
-        <label>Typ služby (povinné):</label>
-        <select name="serviceType" value={formData.serviceType} onChange={handleChange} required>
-          <option value="Rekonstrukce bytu">Rekonstrukce bytu</option>
-          <option value="Stavba rodinného domu">Stavba rodinného domu</option>
-          <option value="Zateplení fasády">Zateplení fasády</option>
-          <option value="Jiné">Jiné</option>
-        </select>
-      </div>
-
-      <div style={fieldStyle}>
-        <label>Popis služby (nepovinné):</label>
-        <textarea
-          name="serviceDescription"
-          value={formData.serviceDescription}
-          onChange={handleChange}
-          placeholder="Popište podrobnosti služby..."
-          rows="4"
-        />
-      </div>
-
-      <div style={fieldStyle}>
-        <label>Realizace od (nepovinné):</label>
-        <input
-          type="date"
-          name="realizationFrom"
-          value={formData.realizationFrom}
-          onChange={handleChange}
-        />
-      </div>
-
-      <div style={fieldStyle}>
-        <label>Realizace do (nepovinné):</label>
-        <input
-          type="date"
-          name="realizationTo"
-          value={formData.realizationTo}
-          onChange={handleChange}
-        />
-      </div>
-
-      <div style={fieldStyle}>
-        <label>Preferovaný termín (nepovinné):</label>
-        <input
-          type="date"
-          name="preferredDate"
-          value={formData.preferredDate}
-          onChange={handleChange}
-        />
-      </div>
-
-      <div style={fieldStyle}>
-        <label>Dodatečné informace (nepovinné):</label>
-        <textarea
-          name="additionalInfo"
-          value={formData.additionalInfo}
-          onChange={handleChange}
-          placeholder="Zde můžete přidat dodatečné informace..."
-          rows="4"
-        />
-      </div>
-
-      <div style={checkboxStyle}>
-        <label>
+        <div style={fieldStyle}>
+          <label>
+            Jméno a příjmení<span style={requiredStar}>*</span>:
+          </label>
           <input
-            type="checkbox"
-            name="agree"
-            checked={formData.agree}
+            type="text"
+            name="fullName"
+            value={formData.fullName}
             onChange={handleChange}
             required
+            placeholder="Vaše jméno a příjmení"
           />
-          Souhlasím se zpracováním osobních údajů (povinné)
-        </label>
-      </div>
+          {errors.fullName && <span style={errorStyle}>{errors.fullName}</span>}
+        </div>
 
-      <button type="button" onClick={handleSendPdfToBackend} style={buttonStyle}>
-        Stáhnout PDF
-      </button>
-    </form>
+        <div style={fieldStyle}>
+          <label>Firma:</label>
+          <input
+            type="text"
+            name="company"
+            value={formData.company}
+            onChange={handleChange}
+            placeholder="Název firmy"
+          />
+        </div>
+
+        <div style={fieldStyle}>
+          <label>IČO:</label>
+          <input
+            type="text"
+            name="ico"
+            value={formData.ico}
+            onChange={handleChange}
+            placeholder="Vaše IČO"
+          />
+        </div>
+
+        <div style={fieldStyle}>
+          <label>DIČ:</label>
+          <input
+            type="text"
+            name="dic"
+            value={formData.dic}
+            onChange={handleChange}
+            placeholder="Vaše DIČ"
+          />
+        </div>
+
+        <div style={fieldStyle}>
+          <label>Sídlo:</label>
+          <input
+            type="text"
+            name="address"
+            value={formData.address}
+            onChange={handleChange}
+            placeholder="Adresa sídla"
+          />
+        </div>
+
+        <div style={fieldStyle}>
+          <label>
+            E-mail<span style={requiredStar}>*</span>:
+          </label>
+          <input
+            type="email"
+            name="email"
+            value={formData.email}
+            onChange={handleChange}
+            required
+            placeholder="Váš e-mail"
+          />
+          {errors.email && <span style={errorStyle}>{errors.email}</span>}
+        </div>
+
+        <div style={fieldStyle}>
+          <label>
+            Telefon<span style={requiredStar}>*</span>:
+          </label>
+          <input
+            type="tel"
+            name="phone"
+            value={formData.phone}
+            onChange={handleChange}
+            required
+            placeholder="Váš telefon"
+          />
+          {errors.phone && <span style={errorStyle}>{errors.phone}</span>}
+        </div>
+
+        <div style={fieldStyle}>
+          <label>
+            Typ služby<span style={requiredStar}>*</span>:
+          </label>
+          <select name="serviceType" value={formData.serviceType} onChange={handleChange} required>
+            <option value="Rekonstrukce bytu">Rekonstrukce bytu</option>
+            <option value="Stavba rodinného domu">Stavba rodinného domu</option>
+            <option value="Zateplení fasády">Zateplení fasády</option>
+            <option value="Jiné">Jiné</option>
+          </select>
+        </div>
+
+        <div style={fieldStyle}>
+          <label>Popis služby:</label>
+          <textarea
+            name="serviceDescription"
+            value={formData.serviceDescription}
+            onChange={handleChange}
+            placeholder="Popište podrobnosti služby..."
+            rows="4"
+          />
+        </div>
+
+        <div style={fieldStyle}>
+          <label>Realizace od:</label>
+          <input
+            type="date"
+            name="realizationFrom"
+            value={formData.realizationFrom}
+            onChange={handleChange}
+          />
+        </div>
+
+        <div style={fieldStyle}>
+          <label>Realizace do:</label>
+          <input
+            type="date"
+            name="realizationTo"
+            value={formData.realizationTo}
+            onChange={handleChange}
+          />
+        </div>
+
+        <div style={fieldStyle}>
+          <label>Preferovaný termín:</label>
+          <input
+            type="date"
+            name="preferredDate"
+            value={formData.preferredDate}
+            onChange={handleChange}
+          />
+        </div>
+
+        <div style={fieldStyle}>
+          <label>Dodatečné informace:</label>
+          <textarea
+            name="additionalInfo"
+            value={formData.additionalInfo}
+            onChange={handleChange}
+            placeholder="Zde můžete přidat dodatečné informace..."
+            rows="4"
+          />
+        </div>
+
+        <div style={checkboxStyle}>
+          <label>
+            <input
+              type="checkbox"
+              name="agree"
+              checked={formData.agree}
+              onChange={handleChange}
+              required
+            />
+            Souhlasím se zpracováním osobních údajů<span style={requiredStar}>*</span>
+          </label>
+          {errors.agree && <span style={errorStyle}>{errors.agree}</span>}
+        </div>
+
+        <button type="button" onClick={handleSendPdfToBackend} style={buttonStyle}>
+          Stáhnout PDF
+        </button>
+      </form>
+    </>
   );
 };
+
+const zhotovitelLogo = "/Small_Icon.jpeg";
 
 // PDF dokument generovaný z formulářových dat
 const PdfDocument = ({
@@ -239,23 +272,65 @@ const PdfDocument = ({
   preferredDate,
   additionalInfo,
 }) => (
-  <Document>
+<Document>
     <Page size="A4" style={styles.page}>
-      <View style={styles.section}>
-        <Text style={styles.title}>Zakázkový formulář</Text>
-        <Text style={styles.text}>Jméno a příjmení: {fullName}</Text>
-        <Text style={styles.text}>Firma: {company || 'Neuvedeno'}</Text>
-        <Text style={styles.text}>IČO: {ico || 'Neuvedeno'}</Text>
-        <Text style={styles.text}>DIČ: {dic || 'Neuvedeno'}</Text>
-        <Text style={styles.text}>Sídlo: {address || 'Neuvedeno'}</Text>
-        <Text style={styles.text}>E-mail: {email}</Text>
-        <Text style={styles.text}>Telefon: {phone}</Text>
-        <Text style={styles.text}>Typ služby: {serviceType}</Text>
-        <Text style={styles.text}>Popis služby: {serviceDescription || 'Neuvedeno'}</Text>
-        <Text style={styles.text}>Realizace od: {realizationFrom || 'Neuvedeno'}</Text>
-        <Text style={styles.text}>Realizace do: {realizationTo || 'Neuvedeno'}</Text>
-        <Text style={styles.text}>Preferovaný termín: {preferredDate || 'Neuvedeno'}</Text>
-        <Text style={styles.text}>Dodatečné informace: {additionalInfo || 'Neuvedeno'}</Text>
+      <View>
+        {/* Nadpis a číslo zakázky */}
+        <Text style={styles.title}>ZAKÁZKOVÝ FORMULÁŘ</Text>
+        <Text style={styles.subtitle}>ZAKÁZKA Č. …………</Text>
+
+        {/* Flexbox pro objednatele a zhotovitele */}
+        <View style={styles.flexRow}>
+          {/* Sekce: Kontaktní údaje objednatele */}
+          <View style={styles.leftColumn}>
+            <Text style={styles.sectionTitle}>KONTAKTNÍ ÚDAJE OBJEDNATELE</Text>
+            <Text style={styles.text}>JMÉNO: {fullName}</Text>
+            <Text style={styles.text}>PŘÍJMENÍ: {fullName.split(' ')[1] || ''}</Text>
+            <Text style={styles.text}>FIRMA: {company || 'Neuvedeno'}</Text>
+            <Text style={styles.text}>IČO/DIČ: {ico || 'Neuvedeno'} / {dic || 'Neuvedeno'}</Text>
+            <Text style={styles.text}>BYDLIŠTĚ/SÍDLO: {address || 'Neuvedeno'}</Text>
+            <Text style={styles.text}>TELEFON: {phone}</Text>
+            <Text style={styles.text}>E-MAIL: {email}</Text>
+          </View>
+
+          {/* Sekce: Zhotovitel */}
+          <View style={styles.rightColumn}>
+            <Image src={SmallIcon} style={styles.logo} />
+            <Text style={styles.sectionTitle}>ZHOTOVITEL</Text>
+            <Text style={styles.text}>Masarykovo náměští 105</Text>
+            <Text style={styles.text}>675 71, Náměšť nad Oslavou</Text>
+            <Text style={styles.text}>Tel./Fax: 568 620 008</Text>
+            <Text style={styles.text}>Mobil: 606 686 716, 603 859 971 </Text>
+            <Text style={styles.text}>E-mail: vh.mont-stav@seznam.cz</Text>
+            <Text style={styles.text}>IČO: 28263511</Text>
+
+          </View>
+        </View>
+
+        {/* Sekce: Základní údaje zakázky */}
+        <View style={styles.section}>
+          <Text style={styles.sectionTitle}>ZÁKLADNÍ ÚDAJE ZAKÁZKY</Text>
+          <Text style={styles.text}>MÍSTO REALIZACE: {address || 'Neuvedeno'}</Text>
+          <Text style={styles.text}>
+            TERMÍN REALIZACE: OD {realizationFrom || 'Neuvedeno'} DO {realizationTo || 'Neuvedeno'}
+          </Text>
+          <Text style={styles.text}>ČÁSTKA: …………………… Kč</Text>
+          <Text style={styles.text}>DALŠÍ INFORMACE: {additionalInfo || 'Neuvedeno'}</Text>
+        </View>
+
+        {/* Sekce: Popis zakázky */}
+        <View style={styles.section}>
+          <Text style={styles.sectionTitle}>POPIS ZAKÁZKY</Text>
+          <Text style={styles.text}>{serviceDescription || 'Neuvedeno'}</Text>
+        </View>
+
+        {/* Sekce: Závazná objednávka */}
+        <View style={styles.section}>
+          <Text style={styles.sectionTitle}>ZÁVAZNÁ OBJEDNÁVKA</Text>
+          <Text style={styles.text}>V: …………………………………..</Text>
+          <Text style={styles.text}>DNE: …………………………………..</Text>
+          <Text style={styles.text}>PODPIS OBJEDNAVATELE: …………………………………..</Text>
+        </View>
       </View>
     </Page>
   </Document>
@@ -263,10 +338,61 @@ const PdfDocument = ({
 
 // Stylování pro PDF a formulář
 const styles = StyleSheet.create({
-  page: { padding: 20, fontSize: 12, fontFamily: 'Roboto' },
-  section: { marginBottom: 10 },
-  title: { fontSize: 20, marginBottom: 10, fontFamily: 'Roboto', fontWeight: 'bold' },
-  text: { marginBottom: 5, fontFamily: 'Roboto' },
+  page: {
+    padding: 20,
+    fontSize: 12,
+    fontFamily: 'Roboto',
+  },
+  section: {
+    marginBottom: 10,
+    padding: 10,
+    border: '3px solid #000',
+    borderRadius: 10,
+    alignItems: 'left',
+  },
+  title: {
+    fontSize: 20,
+    marginBottom: 10,
+    fontWeight: 'bold',
+    textAlign: 'center',
+  },
+  subtitle: {
+    fontSize: 16,
+    marginBottom: 20,
+    textAlign: 'center',
+  },
+  flexRow: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginBottom: 15,
+  },
+  leftColumn: {
+    width: '60%',
+    padding: 10,
+    border: '3px solid #000',
+    borderRadius: 10,
+  },
+  rightColumn: {
+    width: '40%',
+    padding: 10,
+    border: '3px solid #000',
+    borderRadius: 10,
+    alignItems: 'center',
+  },
+  sectionTitle: {
+    fontSize: 14,
+    marginBottom: 10,
+    fontWeight: 'bold',
+    textAlign: "center",
+  },
+  text: {
+    marginBottom: 5,
+  },
+  logo: {
+    width: 80,
+    height: 50,
+    marginBottom: 10,
+  },
 });
 
 const formStyle = {
@@ -288,5 +414,8 @@ const buttonStyle = {
   borderRadius: '5px',
   cursor: 'pointer',
 };
+
+const requiredStar = { color: 'red', marginLeft: '5px' };
+const errorStyle = { color: 'red', fontSize: '12px', marginTop: '5px' };
 
 export default OrderForm;
