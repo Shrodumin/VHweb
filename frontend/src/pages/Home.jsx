@@ -52,7 +52,7 @@ function Home() {
           <div className="intro-container">
             <img src="/intro/intro.jpg" alt="Logo" className="img-fluid" />
             <div className="d-flex justify-content-center align-items-center">
-              <h1 className="text-white intro-title">HESLO FIRMY</h1>
+              <h1 className="text-white intro-title">Společně vytvoříme váš domov</h1>
             </div>
           </div>
           <h1 className="text-center" style={{ marginTop: "50px" }}>O nás</h1>
