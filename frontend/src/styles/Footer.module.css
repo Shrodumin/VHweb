@@ -7,12 +7,14 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    height: auto;
 }
 
 .footerContainer {
     display: flex;
     flex-wrap: wrap;  /* Zajišťuje zalomení na menších obrazovkách */
-    justify-content: space-between;
+    justify-content: space-around;
+    align-items: stretch;
     width: 100%;
     max-width: 1200px;
     text-align: center;
@@ -40,6 +42,24 @@
     font-weight: bold;
 }
 
+.footerColumn, .footerLogo {
+    flex: 1; /* Sloupce budou mít stejnou výšku */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px; /* Mezera mezi položkami */
+}
+
+.footerLogo{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: column;
+    flex: 1;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
 .footerHref:hover {
     text-decoration: underline;
 }
@@ -57,3 +77,4 @@
         text-align: center;
     }
 }
+

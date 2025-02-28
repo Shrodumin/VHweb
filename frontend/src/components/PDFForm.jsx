@@ -192,21 +192,27 @@ const OrderForm = () => {
         </div>
 
         <div style={fieldStyle}>
-          <label>Realizace od:</label>
+          <label>Realizace od
+          <span style={requiredStar}>*</span>:
+          </label>
           <input
             type="date"
             name="realizationFrom"
             value={formData.realizationFrom}
+            required
             onChange={handleChange}
           />
         </div>
 
         <div style={fieldStyle}>
-          <label>Realizace do:</label>
+          <label>Realizace do:
+          <span style={requiredStar}>*</span>:
+          </label>
           <input
             type="date"
             name="realizationTo"
             value={formData.realizationTo}
+            required
             onChange={handleChange}
           />
         </div>
