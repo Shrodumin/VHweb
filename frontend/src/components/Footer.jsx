@@ -11,9 +11,7 @@ function Footer() {
             <div className={styles.footerContainer}>
                 
                 {/* 1. Sloupec */}
-                <div className={styles.footerColumn}>
-                    <a href="https://www.folkoveprazdniny.cz/"><p>Folkové prázdniny</p></a>          
-                    <p>Náměšťský ples</p>
+                <div className={styles.footerColumn}> 
                     <a href="https://www.zamecky-vrch.cz/"><p>Závody do vrchu</p></a>
                 </div>
                 {/* 2. Sloupec */}
@@ -29,6 +27,14 @@ function Footer() {
                 <div className={styles.footerLogo}>
                     <Link to="https://www.domovbezzamku.cz/">
                         <Image src="/otherLogos/DbZ.jpg" alt="Domov bez zámku" style={{width: "300px"}}/>
+                    </Link>
+                    <Link to="https://www.folkoveprazdniny.cz/">
+                        <Image src="/otherLogos/FP2025.jpg" alt="Folkové prázdniny" style={{width: "100px"}}/>
+                    </Link>
+                </div>
+                <div className={styles.footerLogo}>
+                    <Link to="#">
+                        <Image src="/otherLogos/ples.jpg" alt="Náměšťský ples" style={{width: "150px"}}/>
                     </Link>
                 </div>
             </div>

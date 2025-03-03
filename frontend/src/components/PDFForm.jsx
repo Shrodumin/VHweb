@@ -31,6 +31,8 @@ const OrderForm = () => {
     realizationTo: '',
     preferredDate: '',
     additionalInfo: '',
+    financialLimit: 'ne',
+    financialLimitValue: '',	
     agree: false,
   });
 
@@ -78,182 +80,236 @@ const OrderForm = () => {
       <NavbarComponent />
       <form style={formStyle}>
         <h2>Zakázkový formulář</h2>
-
-        <div style={fieldStyle}>
-          <label>
-            Jméno a příjmení<span style={requiredStar}>*</span>:
-          </label>
-          <input
-            type="text"
-            name="fullName"
-            value={formData.fullName}
-            onChange={handleChange}
-            required
-            placeholder="Vaše jméno a příjmení"
-          />
-          {errors.fullName && <span style={errorStyle}>{errors.fullName}</span>}
-        </div>
-
-        <div style={fieldStyle}>
-          <label>Firma:</label>
-          <input
-            type="text"
-            name="company"
-            value={formData.company}
-            onChange={handleChange}
-            placeholder="Název firmy"
-          />
-        </div>
-
-        <div style={fieldStyle}>
-          <label>IČO:</label>
-          <input
-            type="text"
-            name="ico"
-            value={formData.ico}
-            onChange={handleChange}
-            placeholder="Vaše IČO"
-          />
-        </div>
-
-        <div style={fieldStyle}>
-          <label>DIČ:</label>
-          <input
-            type="text"
-            name="dic"
-            value={formData.dic}
-            onChange={handleChange}
-            placeholder="Vaše DIČ"
-          />
-        </div>
-
-        <div style={fieldStyle}>
-          <label>Sídlo:</label>
-          <input
-            type="text"
-            name="address"
-            value={formData.address}
-            onChange={handleChange}
-            placeholder="Adresa sídla"
-          />
-        </div>
-
-        <div style={fieldStyle}>
-          <label>
-            E-mail<span style={requiredStar}>*</span>:
-          </label>
-          <input
-            type="email"
-            name="email"
-            value={formData.email}
-            onChange={handleChange}
-            required
-            placeholder="Váš e-mail"
-          />
-          {errors.email && <span style={errorStyle}>{errors.email}</span>}
-        </div>
-
-        <div style={fieldStyle}>
-          <label>
-            Telefon<span style={requiredStar}>*</span>:
-          </label>
-          <input
-            type="tel"
-            name="phone"
-            value={formData.phone}
-            onChange={handleChange}
-            required
-            placeholder="Váš telefon"
-          />
-          {errors.phone && <span style={errorStyle}>{errors.phone}</span>}
-        </div>
-
-        <div style={fieldStyle}>
-          <label>
-            Typ služby<span style={requiredStar}>*</span>:
-          </label>
-          <select name="serviceType" value={formData.serviceType} onChange={handleChange} required>
-            <option value="Rekonstrukce bytu">Rekonstrukce bytu</option>
-            <option value="Stavba rodinného domu">Stavba rodinného domu</option>
-            <option value="Zateplení fasády">Zateplení fasády</option>
-            <option value="Jiné">Jiné</option>
-          </select>
-        </div>
-
-        <div style={fieldStyle}>
-          <label>Popis služby:</label>
-          <textarea
-            name="serviceDescription"
-            value={formData.serviceDescription}
-            onChange={handleChange}
-            placeholder="Popište podrobnosti služby..."
-            rows="4"
-          />
-        </div>
-
-        <div style={fieldStyle}>
-          <label>Realizace od
-          <span style={requiredStar}>*</span>:
-          </label>
-          <input
-            type="date"
-            name="realizationFrom"
-            value={formData.realizationFrom}
-            required
-            onChange={handleChange}
-          />
-        </div>
-
-        <div style={fieldStyle}>
-          <label>Realizace do:
-          <span style={requiredStar}>*</span>:
-          </label>
-          <input
-            type="date"
-            name="realizationTo"
-            value={formData.realizationTo}
-            required
-            onChange={handleChange}
-          />
-        </div>
-
-        <div style={fieldStyle}>
-          <label>Preferovaný termín:</label>
-          <input
-            type="date"
-            name="preferredDate"
-            value={formData.preferredDate}
-            onChange={handleChange}
-          />
-        </div>
-
-        <div style={fieldStyle}>
-          <label>Dodatečné informace:</label>
-          <textarea
-            name="additionalInfo"
-            value={formData.additionalInfo}
-            onChange={handleChange}
-            placeholder="Zde můžete přidat dodatečné informace..."
-            rows="4"
-          />
-        </div>
-
-        <div style={checkboxStyle}>
-          <label>
+  
+        {/* Sekce: Osobní údaje */}
+        <div style={sectionStyle}>
+          <div style={sectionTitleStyle}>Osobní údaje</div>
+          <div style={fieldStyle}>
+            <label>
+              Jméno a příjmení<span style={requiredStar}>*</span>:
+            </label>
             <input
-              type="checkbox"
-              name="agree"
-              checked={formData.agree}
+              type="text"
+              name="fullName"
+              value={formData.fullName}
               onChange={handleChange}
               required
+              placeholder="Vaše jméno a příjmení"
             />
-            Souhlasím se zpracováním osobních údajů<span style={requiredStar}>*</span>
-          </label>
-          {errors.agree && <span style={errorStyle}>{errors.agree}</span>}
+            {errors.fullName && <span style={errorStyle}>{errors.fullName}</span>}
+          </div>
+  
+          <div style={fieldStyle}>
+            <label>Firma:</label>
+            <input
+              type="text"
+              name="company"
+              value={formData.company}
+              onChange={handleChange}
+              placeholder="Název firmy"
+            />
+          </div>
+  
+          <div style={fieldStyle}>
+            <label>IČO:</label>
+            <input
+              type="text"
+              name="ico"
+              value={formData.ico}
+              onChange={handleChange}
+              placeholder="Vaše IČO"
+            />
+          </div>
+  
+          <div style={fieldStyle}>
+            <label>DIČ:</label>
+            <input
+              type="text"
+              name="dic"
+              value={formData.dic}
+              onChange={handleChange}
+              placeholder="Vaše DIČ"
+            />
+          </div>
+  
+          <div style={fieldStyle}>
+            <label>Sídlo:</label>
+            <input
+              type="text"
+              name="address"
+              value={formData.address}
+              onChange={handleChange}
+              placeholder="Adresa sídla"
+            />
+          </div>
+  
+          <div style={fieldStyle}>
+            <label>
+              E-mail<span style={requiredStar}>*</span>:
+            </label>
+            <input
+              type="email"
+              name="email"
+              value={formData.email}
+              onChange={handleChange}
+              required
+              placeholder="Váš e-mail"
+            />
+            {errors.email && <span style={errorStyle}>{errors.email}</span>}
+          </div>
+  
+          <div style={fieldStyle}>
+            <label>
+              Telefon<span style={requiredStar}>*</span>:
+            </label>
+            <input
+              type="tel"
+              name="phone"
+              value={formData.phone}
+              onChange={handleChange}
+              required
+              placeholder="Váš telefon"
+            />
+            {errors.phone && <span style={errorStyle}>{errors.phone}</span>}
+          </div>
         </div>
-
+  
+        {/* Sekce: Detaily zakázky */}
+        <div style={sectionStyle}>
+          <div style={sectionTitleStyle}>Detaily zakázky</div>
+          <div style={fieldStyle}>
+            <label>
+              Typ služby<span style={requiredStar}>*</span>:
+            </label>
+            <select name="serviceType" value={formData.serviceType} onChange={handleChange} required>
+              <option value="Rekonstrukce bytu">Rekonstrukce bytu</option>
+              <option value="Stavba rodinného domu">Stavba rodinného domu</option>
+              <option value="Zateplení fasády">Zateplení fasády</option>
+              <option value="Jiné">Jiné</option>
+            </select>
+          </div>
+  
+          <div style={fieldStyle}>
+            <label>Popis služby:</label>
+            <textarea
+              name="serviceDescription"
+              value={formData.serviceDescription}
+              onChange={handleChange}
+              placeholder="Popište podrobnosti služby..."
+              rows="4"
+            />
+          </div>
+  
+          <div style={fieldStyle}>
+            <label>Realizace od<span style={requiredStar}>*</span>:</label>
+            <input
+              type="date"
+              name="realizationFrom"
+              value={formData.realizationFrom}
+              required
+              onChange={handleChange}
+            />
+          </div>
+  
+          <div style={fieldStyle}>
+            <label>Realizace do<span style={requiredStar}>*</span>:</label>
+            <input
+              type="date"
+              name="realizationTo"
+              value={formData.realizationTo}
+              required
+              onChange={handleChange}
+            />
+          </div>
+  
+          <div style={fieldStyle}>
+            <label>Preferovaný termín:</label>
+            <input
+              type="date"
+              name="preferredDate"
+              value={formData.preferredDate}
+              onChange={handleChange}
+            />
+          </div>
+        </div>
+  
+        {/* Sekce: Finanční informace */}
+        <div style={sectionStyle}>
+          <div style={sectionTitleStyle}>Finanční informace</div>
+          <div style={fieldStyle}>
+            <label>
+              Máte finanční omezení?<span style={requiredStar}>*</span>:
+            </label>
+            <div>
+              <label>
+                <input
+                  type="radio"
+                  name="financialLimit"
+                  value="ano"
+                  checked={formData.financialLimit === 'ano'}
+                  onChange={handleChange}
+                  required
+                />
+                Ano
+              </label>
+              <label style={{ marginLeft: '10px' }}>
+                <input
+                  type="radio"
+                  name="financialLimit"
+                  value="ne"
+                  checked={formData.financialLimit === 'ne'}
+                  onChange={handleChange}
+                  required
+                />
+                Ne
+              </label>
+            </div>
+          </div>
+  
+          <div style={fieldStyle}>
+            <label>Finanční omezení:</label>
+            <input
+              type="text"
+              name="financialLimitValue"
+              value={formData.financialLimitValue}
+              onChange={handleChange}
+              placeholder="Finanční omezení"
+            />
+          </div>
+        </div>
+  
+        {/* Sekce: Dodatečné informace */}
+        <div style={sectionStyle}>
+          <div style={sectionTitleStyle}>Dodatečné informace</div>
+          <div style={fieldStyle}>
+            <label>Dodatečné informace:</label>
+            <textarea
+              name="additionalInfo"
+              value={formData.additionalInfo}
+              onChange={handleChange}
+              placeholder="Zde můžete přidat dodatečné informace..."
+              rows="4"
+            />
+          </div>
+  
+          <div style={checkboxStyle}>
+            <label>
+              <input
+                type="checkbox"
+                name="agree"
+                checked={formData.agree}
+                onChange={handleChange}
+                required
+              />
+              Souhlasím se zpracováním osobních údajů<span style={requiredStar}>*</span>
+            </label>
+            {errors.agree && <span style={errorStyle}>{errors.agree}</span>}
+          </div>
+        </div>
+  
+        {/* Tlačítko Odeslat */}
         <button type="button" onClick={handleSendPdfToBackend} style={buttonStyle}>
-          Stáhnout PDF
+          Odeslat
         </button>
       </form>
     </>
@@ -261,6 +317,18 @@ const OrderForm = () => {
 };
 
 const zhotovitelLogo = "/Small_Icon.jpeg";
+
+
+const formatDate = (dateString) => {
+  if (!dateString) return 'Neuvedeno';
+
+  const date = new Date(dateString);
+  const day = date.getDate();
+  const month = date.getMonth() + 1; // Měsíce jsou číslovány od 0, proto přidáváme 1
+  const year = date.getFullYear();
+
+  return `${day}.${month}.${year}`;
+};
 
 // PDF dokument generovaný z formulářových dat
 const PdfDocument = ({
@@ -277,6 +345,8 @@ const PdfDocument = ({
   realizationTo,
   preferredDate,
   additionalInfo,
+  financialLimit,
+  financialLimitValue
 }) => (
 <Document>
     <Page size="A4" style={styles.page}>
@@ -316,18 +386,20 @@ const PdfDocument = ({
         {/* Sekce: Základní údaje zakázky */}
         <View style={styles.section}>
           <Text style={styles.sectionTitle}>ZÁKLADNÍ ÚDAJE ZAKÁZKY</Text>
-          <Text style={styles.text}>MÍSTO REALIZACE: {address || 'Neuvedeno'}</Text>
+          <Text style={styles.text}>MÍSTO REALIZACE: {address || '.....................'}</Text>
           <Text style={styles.text}>
-            TERMÍN REALIZACE: OD {realizationFrom || 'Neuvedeno'} DO {realizationTo || 'Neuvedeno'}
+            TERMÍN REALIZACE: OD {formatDate(realizationFrom) || '.....................'} DO {formatDate(realizationTo) || '.....................'}
           </Text>
-          <Text style={styles.text}>ČÁSTKA: …………………… Kč</Text>
-          <Text style={styles.text}>DALŠÍ INFORMACE: {additionalInfo || 'Neuvedeno'}</Text>
+          <Text style={styles.text}>PREFEROVANÉ DATUM REALIZACE: {formatDate(preferredDate) || '.....................'}</Text>
+          <Text style={styles.text}>FINANČNÍ OMEZENÍ: {financialLimit === 'ano' ? 'Ano' : 'Ne'}</Text>
+          <Text style={styles.text}>ČÁSTKA: {financialLimitValue || '...................'} Kč</Text>
+          <Text style={styles.text}>DALŠÍ INFORMACE: {additionalInfo || '.....................'}</Text>
         </View>
 
         {/* Sekce: Popis zakázky */}
-        <View style={styles.section}>
+        <View style={styles.sectionDesc} >
           <Text style={styles.sectionTitle}>POPIS ZAKÁZKY</Text>
-          <Text style={styles.text}>{serviceDescription || 'Neuvedeno'}</Text>
+          <Text style={styles.text}>{serviceDescription || ''}</Text>
         </View>
 
         {/* Sekce: Závazná objednávka */}
@@ -344,6 +416,14 @@ const PdfDocument = ({
 
 // Stylování pro PDF a formulář
 const styles = StyleSheet.create({
+  sectionDesc:{
+    minHeight: '150px',
+    marginBottom: 10,
+    padding: 10,
+    border: '3px solid #000',
+    borderRadius: 10,
+    alignItems: 'left',
+  },
   page: {
     padding: 20,
     fontSize: 12,
@@ -402,7 +482,7 @@ const styles = StyleSheet.create({
 });
 
 const formStyle = {
-  maxWidth: '600px',
+  maxWidth: '800px', // Zvětšíme šířku formuláře
   margin: '0 auto',
   padding: '20px',
   border: '1px solid #ddd',
@@ -410,8 +490,35 @@ const formStyle = {
   backgroundColor: '#f9f9f9',
 };
 
-const fieldStyle = { marginBottom: '15px' };
-const checkboxStyle = { marginBottom: '20px' };
+const sectionStyle = {
+  marginBottom: '20px',
+  padding: '15px',
+  border: '1px solid #ccc',
+  borderRadius: '8px',
+  backgroundColor: '#fff',
+};
+
+const sectionTitleStyle = {
+  fontSize: '18px',
+  fontWeight: 'bold',
+  marginBottom: '15px',
+  color: '#333',
+  borderBottom: '2px solid #007bff',
+  paddingBottom: '5px',
+};
+
+const fieldStyle = {
+  marginBottom: '15px',
+  display: 'flex',
+  flexDirection: 'column',
+};
+
+const checkboxStyle = {
+  marginBottom: '20px',
+  display: 'flex',
+  alignItems: 'center',
+};
+
 const buttonStyle = {
   padding: '10px 20px',
   backgroundColor: '#007bff',
@@ -419,6 +526,7 @@ const buttonStyle = {
   border: 'none',
   borderRadius: '5px',
   cursor: 'pointer',
+  fontSize: '16px',
 };
 
 const requiredStar = { color: 'red', marginLeft: '5px' };
