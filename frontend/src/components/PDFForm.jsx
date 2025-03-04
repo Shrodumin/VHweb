@@ -348,7 +348,7 @@ const PdfDocument = ({
   financialLimit,
   financialLimitValue
 }) => (
-<Document>
+  <Document>
     <Page size="A4" style={styles.page}>
       <View>
         {/* Nadpis a číslo zakázky */}
@@ -376,10 +376,9 @@ const PdfDocument = ({
             <Text style={styles.text}>Masarykovo náměští 105</Text>
             <Text style={styles.text}>675 71, Náměšť nad Oslavou</Text>
             <Text style={styles.text}>Tel./Fax: 568 620 008</Text>
-            <Text style={styles.text}>Mobil: 606 686 716, 603 859 971 </Text>
+            <Text style={styles.text}>Mobil: 602 545 077, 603 859 971 </Text>
             <Text style={styles.text}>E-mail: vh.mont-stav@seznam.cz</Text>
             <Text style={styles.text}>IČO: 28263511</Text>
-
           </View>
         </View>
 
@@ -387,17 +386,22 @@ const PdfDocument = ({
         <View style={styles.section}>
           <Text style={styles.sectionTitle}>ZÁKLADNÍ ÚDAJE ZAKÁZKY</Text>
           <Text style={styles.text}>MÍSTO REALIZACE: {address || '.....................'}</Text>
-          <Text style={styles.text}>
-            TERMÍN REALIZACE: OD {formatDate(realizationFrom) || '.....................'} DO {formatDate(realizationTo) || '.....................'}
-          </Text>
-          <Text style={styles.text}>PREFEROVANÉ DATUM REALIZACE: {formatDate(preferredDate) || '.....................'}</Text>
-          <Text style={styles.text}>FINANČNÍ OMEZENÍ: {financialLimit === 'ano' ? 'Ano' : 'Ne'}</Text>
-          <Text style={styles.text}>ČÁSTKA: {financialLimitValue || '...................'} Kč</Text>
+          <View style={styles.flexRow}>
+            <Text style={styles.text}>
+              TERMÍN REALIZACE: OD {formatDate(realizationFrom) || '.....................'} DO {formatDate(realizationTo) || '.....................'}
+            </Text>
+            <Text style={styles.text}>PREFEROVANÉ DATUM: {formatDate(preferredDate) || '.....................'}</Text>
+          </View>
+          <View style={styles.flexRow}>
+            <Text style={styles.text}>FINANČNÍ OMEZENÍ: {financialLimit === 'ano' ? 'Ano' : 'Ne'}</Text>
+            <Text style={styles.text}>ČÁSTKA: {financialLimitValue || '...................'} Kč</Text>
+            
+          </View>
           <Text style={styles.text}>DALŠÍ INFORMACE: {additionalInfo || '.....................'}</Text>
         </View>
 
         {/* Sekce: Popis zakázky */}
-        <View style={styles.sectionDesc} >
+        <View style={styles.sectionDesc}>
           <Text style={styles.sectionTitle}>POPIS ZAKÁZKY</Text>
           <Text style={styles.text}>{serviceDescription || ''}</Text>
         </View>
@@ -405,9 +409,16 @@ const PdfDocument = ({
         {/* Sekce: Závazná objednávka */}
         <View style={styles.section}>
           <Text style={styles.sectionTitle}>ZÁVAZNÁ OBJEDNÁVKA</Text>
-          <Text style={styles.text}>V: …………………………………..</Text>
-          <Text style={styles.text}>DNE: …………………………………..</Text>
-          <Text style={styles.text}>PODPIS OBJEDNAVATELE: …………………………………..</Text>
+          <View style={styles.flexRow}>
+            <View style={styles.leftColumnNoBorder}>
+              <Text style={styles.text}>V: …………………………………..</Text>
+              <Text style={styles.text}>DNE: …………………………………..</Text>
+            </View>
+            <View style={styles.rightColumnNoBorder}>
+              <Text style={styles.text}>PODPIS OBJEDNAVATELE:</Text>
+              <Text style={styles.textSignature}>…………………………………..</Text>
+            </View>
+          </View>
         </View>
       </View>
     </Page>
@@ -450,20 +461,31 @@ const styles = StyleSheet.create({
   flexRow: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    marginBottom: 15,
   },
   leftColumn: {
-    width: '60%',
+    width: '50%',
     padding: 10,
     border: '3px solid #000',
     borderRadius: 10,
   },
   rightColumn: {
-    width: '40%',
+    width: '50%',
     padding: 10,
     border: '3px solid #000',
     borderRadius: 10,
     alignItems: 'center',
+    textAlign: 'left'
+  },
+  rightColumnNoBorder: {
+    width: '50%',
+    padding: 10,
+    alignItems: 'right',
+    textAlign: 'right',
+  },
+  leftColumnNoBorder: {
+    width: '50%',
+    padding: 10,
+    alignItems: 'left',
   },
   sectionTitle: {
     fontSize: 14,
@@ -473,6 +495,10 @@ const styles = StyleSheet.create({
   },
   text: {
     marginBottom: 5,
+  },
+  textSignature:{
+    marginBottom: 5,
+    marginTop: 5,
   },
   logo: {
     width: 80,
