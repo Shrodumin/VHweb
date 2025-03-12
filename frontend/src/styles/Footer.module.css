@@ -14,10 +14,11 @@
     display: flex;
     flex-wrap: wrap;  /* Zajišťuje zalomení na menších obrazovkách */
     justify-content: space-around;
+    gap: 50px;
     align-items: stretch;
     width: 100%;
-    max-width: 1200px;
     text-align: center;
+    align-items: center;
 }
 
 .footerColumn {

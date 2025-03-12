@@ -17,6 +17,7 @@ Font.register({
 });
 
 const OrderForm = () => {
+  const [isCompany, setIsCompany] = useState(false); // Nový stav pro checkbox firmy
   const [formData, setFormData] = useState({
     fullName: '',
     company: '',
@@ -46,6 +47,10 @@ const OrderForm = () => {
     });
   };
 
+  const handleCompanyCheckbox = (e) => {
+    setIsCompany(e.target.checked);
+  };
+
   const validateForm = () => {
     const newErrors = {};
     if (!formData.fullName) newErrors.fullName = 'Jméno a příjmení je povinné';
@@ -63,7 +68,7 @@ const OrderForm = () => {
     }
 
     try {
-      const blob = await pdf(<PdfDocument {...formData} />).toBlob();
+      const blob = await pdf(<PdfDocument {...formData} isCompany={isCompany} />).toBlob();
       const formDataToSend = new FormData();
       formDataToSend.append('pdf', blob, 'zakazkovy-formular.pdf');
 
@@ -98,40 +103,58 @@ const OrderForm = () => {
             />
             {errors.fullName && <span style={errorStyle}>{errors.fullName}</span>}
           </div>
-  
-          <div style={fieldStyle}>
-            <label>Firma:</label>
-            <input
-              type="text"
-              name="company"
-              value={formData.company}
-              onChange={handleChange}
-              placeholder="Název firmy"
-            />
+
+          {/* Checkbox pro firmu */}
+          <div style={checkboxStyle}>
+            <label>
+              <input
+                type="checkbox"
+                name="isCompany"
+                checked={isCompany}
+                onChange={handleCompanyCheckbox}
+              />
+              Objednávám jako firma
+            </label>
           </div>
-  
-          <div style={fieldStyle}>
-            <label>IČO:</label>
-            <input
-              type="text"
-              name="ico"
-              value={formData.ico}
-              onChange={handleChange}
-              placeholder="Vaše IČO"
-            />
-          </div>
-  
-          <div style={fieldStyle}>
-            <label>DIČ:</label>
-            <input
-              type="text"
-              name="dic"
-              value={formData.dic}
-              onChange={handleChange}
-              placeholder="Vaše DIČ"
-            />
-          </div>
-  
+
+          {/* Pole pro firmu, IČO a DIČ se zobrazí pouze pokud je zaškrtnuto "Objednávám jako firma" */}
+          {isCompany && (
+            <>
+              <div style={fieldStyle}>
+                <label>Firma:</label>
+                <input
+                  type="text"
+                  name="company"
+                  value={formData.company}
+                  onChange={handleChange}
+                  placeholder="Název firmy"
+                />
+              </div>
+
+              <div style={fieldStyle}>
+                <label>IČO:</label>
+                <input
+                  type="text"
+                  name="ico"
+                  value={formData.ico}
+                  onChange={handleChange}
+                  placeholder="Vaše IČO"
+                />
+              </div>
+
+              <div style={fieldStyle}>
+                <label>DIČ:</label>
+                <input
+                  type="text"
+                  name="dic"
+                  value={formData.dic}
+                  onChange={handleChange}
+                  placeholder="Vaše DIČ"
+                />
+              </div>
+            </>
+          )}
+
           <div style={fieldStyle}>
             <label>Sídlo:</label>
             <input
@@ -142,7 +165,7 @@ const OrderForm = () => {
               placeholder="Adresa sídla"
             />
           </div>
-  
+
           <div style={fieldStyle}>
             <label>
               E-mail<span style={requiredStar}>*</span>:
@@ -157,7 +180,7 @@ const OrderForm = () => {
             />
             {errors.email && <span style={errorStyle}>{errors.email}</span>}
           </div>
-  
+
           <div style={fieldStyle}>
             <label>
               Telefon<span style={requiredStar}>*</span>:
@@ -173,7 +196,7 @@ const OrderForm = () => {
             {errors.phone && <span style={errorStyle}>{errors.phone}</span>}
           </div>
         </div>
-  
+
         {/* Sekce: Detaily zakázky */}
         <div style={sectionStyle}>
           <div style={sectionTitleStyle}>Detaily zakázky</div>
@@ -182,13 +205,17 @@ const OrderForm = () => {
               Typ služby<span style={requiredStar}>*</span>:
             </label>
             <select name="serviceType" value={formData.serviceType} onChange={handleChange} required>
-              <option value="Rekonstrukce bytu">Rekonstrukce bytu</option>
+              <option value="Rekonstrukce domu/bytu">Rekonstrukce bytu</option>
               <option value="Stavba rodinného domu">Stavba rodinného domu</option>
-              <option value="Zateplení fasády">Zateplení fasády</option>
+              <option value="Zateplení/fasáda">Zateplení fasády</option>
+              <option value="Zámková dlažba">Zámková dlažba</option>
+              <option value="Terénní úpravy/třídění materiálu">Terénní úpravy/třídění materiálu</option>
+              <option value="Zděné ploty">Zděné ploty</option>
+              <option value="Drobné stavby">Drobné stavby</option>
               <option value="Jiné">Jiné</option>
             </select>
           </div>
-  
+
           <div style={fieldStyle}>
             <label>Popis služby:</label>
             <textarea
@@ -199,29 +226,27 @@ const OrderForm = () => {
               rows="4"
             />
           </div>
-  
+
           <div style={fieldStyle}>
-            <label>Realizace od<span style={requiredStar}>*</span>:</label>
+            <label>Realizace od:</label>
             <input
               type="date"
               name="realizationFrom"
               value={formData.realizationFrom}
-              required
               onChange={handleChange}
             />
           </div>
-  
+
           <div style={fieldStyle}>
-            <label>Realizace do<span style={requiredStar}>*</span>:</label>
+            <label>Realizace do:</label>
             <input
               type="date"
               name="realizationTo"
               value={formData.realizationTo}
-              required
               onChange={handleChange}
             />
           </div>
-  
+
           <div style={fieldStyle}>
             <label>Preferovaný termín:</label>
             <input
@@ -232,7 +257,7 @@ const OrderForm = () => {
             />
           </div>
         </div>
-  
+
         {/* Sekce: Finanční informace */}
         <div style={sectionStyle}>
           <div style={sectionTitleStyle}>Finanční informace</div>
@@ -265,7 +290,7 @@ const OrderForm = () => {
               </label>
             </div>
           </div>
-  
+
           <div style={fieldStyle}>
             <label>Finanční omezení:</label>
             <input
@@ -277,7 +302,7 @@ const OrderForm = () => {
             />
           </div>
         </div>
-  
+
         {/* Sekce: Dodatečné informace */}
         <div style={sectionStyle}>
           <div style={sectionTitleStyle}>Dodatečné informace</div>
@@ -291,7 +316,7 @@ const OrderForm = () => {
               rows="4"
             />
           </div>
-  
+
           <div style={checkboxStyle}>
             <label>
               <input
@@ -306,7 +331,7 @@ const OrderForm = () => {
             {errors.agree && <span style={errorStyle}>{errors.agree}</span>}
           </div>
         </div>
-  
+
         {/* Tlačítko Odeslat */}
         <button type="button" onClick={handleSendPdfToBackend} style={buttonStyle}>
           Odeslat
@@ -317,7 +342,6 @@ const OrderForm = () => {
 };
 
 const zhotovitelLogo = "/Small_Icon.jpeg";
-
 
 const formatDate = (dateString) => {
   if (!dateString) return 'Neuvedeno';
@@ -346,7 +370,8 @@ const PdfDocument = ({
   preferredDate,
   additionalInfo,
   financialLimit,
-  financialLimitValue
+  financialLimitValue,
+  isCompany, // Přidáno pro kontrolu, zda se jedná o firmu
 }) => (
   <Document>
     <Page size="A4" style={styles.page}>
@@ -362,8 +387,12 @@ const PdfDocument = ({
             <Text style={styles.sectionTitle}>KONTAKTNÍ ÚDAJE OBJEDNATELE</Text>
             <Text style={styles.text}>JMÉNO: {fullName}</Text>
             <Text style={styles.text}>PŘÍJMENÍ: {fullName.split(' ')[1] || ''}</Text>
-            <Text style={styles.text}>FIRMA: {company || 'Neuvedeno'}</Text>
-            <Text style={styles.text}>IČO/DIČ: {ico || 'Neuvedeno'} / {dic || 'Neuvedeno'}</Text>
+            {isCompany && ( // Zobrazí se pouze pokud je objednávka pro firmu
+              <>
+                <Text style={styles.text}>FIRMA: {company || 'Neuvedeno'}</Text>
+                <Text style={styles.text}>IČO/DIČ: {ico || 'Neuvedeno'} / {dic || 'Neuvedeno'}</Text>
+              </>
+            )}
             <Text style={styles.text}>BYDLIŠTĚ/SÍDLO: {address || 'Neuvedeno'}</Text>
             <Text style={styles.text}>TELEFON: {phone}</Text>
             <Text style={styles.text}>E-MAIL: {email}</Text>
@@ -395,7 +424,6 @@ const PdfDocument = ({
           <View style={styles.flexRow}>
             <Text style={styles.text}>FINANČNÍ OMEZENÍ: {financialLimit === 'ano' ? 'Ano' : 'Ne'}</Text>
             <Text style={styles.text}>ČÁSTKA: {financialLimitValue || '...................'} Kč</Text>
-            
           </View>
           <Text style={styles.text}>DALŠÍ INFORMACE: {additionalInfo || '.....................'}</Text>
         </View>
