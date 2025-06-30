@@ -40,7 +40,7 @@ const Leseni = () => {
                   nákres a předběžnou kalkulaci na místě stavby, poté Vám lešení typu RUX
                   dovezeme na místo, postavíme, zajistíme bezpečnost a po provedení díla
                   opět demontujeme a odvezeme. Pokud si však chcete lešení odvést a
-                  postavit svépomocí rádi Vám ho vypůjčíme přímo z našeho skladu.
+                  postavit svépomocí, rádi Vám ho zapůjčíme přímo z našeho skladu.
                 </p>
                 </div>
                 <div className={styles.imageSection}>
