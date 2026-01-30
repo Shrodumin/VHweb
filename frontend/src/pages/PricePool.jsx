@@ -3,7 +3,7 @@ import NavbarComponent from "./Navbar";
 import styles from "../styles/PricePool.module.css";
 
 function PricePool() {
-  const pdfUrl = "/2025_Prices.pdf"; // Cesta k souboru
+  const pdfUrl = "/2026_Prices.pdf"; // Cesta k souboru
 
   return (
     <>
