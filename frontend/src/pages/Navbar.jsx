@@ -93,7 +93,7 @@ function NavbarComponent(){
               <Nav.Link as={Link} to="/contacts" active={location.pathname === '/contacts'}>Kontakty</Nav.Link>
             </Nav.Item>
             <Nav.Item>
-              <Nav.Link as={Link} to="/prices" active={location.pathname === '/prices'}>Ceník</Nav.Link>
+              <Nav.Link as={Link} to="/prices" active={location.pathname === '/prices'}>Ceník a normy</Nav.Link>
             </Nav.Item>
           </Nav>
         </Navbar.Collapse>

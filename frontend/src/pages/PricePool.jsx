@@ -34,18 +34,7 @@ function PricePool() {
           Klikněte zde pro stažení PDF
         </a>
       </div>
-      <div className={styles.pdfContainer}>
-        {/* Desktop: Použití <object> */}
-        <object className={styles.pdfViewer} data={formFile} type="application/pdf">
-          {/* Pokud prohlížeč nepodporuje <object>, zobrazí se alternativa */}
-          <p>Váš prohlížeč nepodporuje zobrazování PDF. <a href={formFile} download>Formulář ke stažení zde</a></p>
-        </object>
 
-        {/* Mobil: Alternativní odkaz ke stažení PDF */}
-        <a href={pdfUrl} className={styles.mobilePdfLink} download>
-          Klikněte zde pro stažení PDF
-        </a>
-      </div>
     </>
   );
 }
