@@ -30,7 +30,7 @@ function PricePool() {
         </object>
 
         {/* Mobil: Alternativní odkaz ke stažení PDF */}
-        <a href={pdfUrl} className={styles.mobilePdfLink} download>
+        <a href={norms} className={styles.mobilePdfLink} download>
           Klikněte zde pro stažení PDF
         </a>
       </div>
