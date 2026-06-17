@@ -62,6 +62,8 @@ function PricePool() {
         </div>
       </div>
 
+      <div style={{ height: "20px" }}></div>
+
       {/* Druhý dokument */}
       <div style={outerWrapperStyle}>
         <div style={innerCenteredStyle}>
