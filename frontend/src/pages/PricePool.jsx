@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react"; // Přidán useEffect a useS
 import NavbarComponent from "./Navbar";
 import { Document, Page, pdfjs } from "react-pdf";
 import pdf from "../../public/2026_Prices.pdf";
+import norm from "../../public/normy.pdf";
 
 function PricePool() {
   pdfjs.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.mjs`;
@@ -67,7 +68,7 @@ function PricePool() {
       {/* Druhý dokument */}
       <div style={outerWrapperStyle}>
         <div style={innerCenteredStyle}>
-          <Document file={pdf}>
+          <Document file={norm}>
             <Page width={pageWidth} pageNumber={1} renderTextLayer={false} renderAnnotationLayer={false} />
             <Page width={pageWidth} pageNumber={2} renderTextLayer={false} renderAnnotationLayer={false} />
           </Document>
