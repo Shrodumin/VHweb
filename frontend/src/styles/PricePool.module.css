@@ -1,41 +1,23 @@
 /* PDF kontejner */
+
+
 .pdfContainer {
-    width: 100%;
-    height: calc(100vh - 135px); /* Odečteme výšku navbaru */
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden; /* Zabrání dvojitému scrollování */
+  margin: 0 auto !important;
+  max-width: 800px;
+  width: 100% !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 20px;
 }
 
-/* iFrame pro PDF */
-.pdfViewer {
-    width: 90%;
-    height: 100%; /* Přizpůsobí se výšce kontejneru */
-    max-width: 1000px;
-    border: none;
+/* Zbytek zůstane stejný, jen s novým názvem hlavní třídy */
+.pdfContainer :global(.react-pdf__Page) {
+  width: 100% !important;
+  min-width: unset !important;
+  box-sizing: border-box;
 }
 
-/* Odkaz na mobilu */
-.mobilePdfLink {
-    display: none;
-    text-decoration: none;
-    background-color: #007bff;
-    color: white;
-    padding: 10px 20px;
-    border-radius: 5px;
-    font-size: 16px;
-    margin-top: 20px;
-}
-
-/* RESPONSIVITA - Mobilní verze */
-@media screen and (max-width: 768px) {
-    .pdfViewer {
-        display: none; /* Skryje <object> na mobilu */
-    }
-
-    .mobilePdfLink {
-        display: block; /* Zobrazí odkaz */
-    }
+.pdfContainer :global(.react-pdf__Page__canvas) {
+  width: 100% !important;
+  height: auto !important;
 }
